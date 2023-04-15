@@ -87,6 +87,7 @@ const ProblemList = () => {
               : <ProblemNotSolved problem={problem} handleProblemSolve={handleProblemSolve} handleProblemCheck={handleProblemCheck} />}
           </>
         ))}
+
       </ul>
       {showModal ? <ProblemModal setShowModal={setShowModal} problem={problem} /> : null}
     </div>

@@ -21,6 +21,7 @@ const App = () => {
             <ProblemList />
           </div>
           <div className="bg-white mr-2 rounded-xl flex flex-col mb-2 justify-center items-center">
+            <h2 className="text-lg font-nunitobold mb-4 text-center">Problemy</h2>
             <HeatMap />
           </div>
 
