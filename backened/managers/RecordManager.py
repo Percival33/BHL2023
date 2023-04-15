@@ -12,13 +12,18 @@ class RecordManager:
 
     def reserve_products(self, order_items):
         taken = []
+        print(order_items)
         for item in order_items:
+            print(item)
             products = self.product_connector.get_available_products_by_type(item['product_type_id'])
             to_take = item['qty']
             for product in products:
+                print(product)
                 count = product['count']
                 possible_to_take = count - product['count_reserved']
-                reserved_qty = min(to_take - possible_to_take, possible_to_take, to_take)
+                print(possible_to_take)
+                if possible_to_take > to_take: reserved_qty = to_take
+                else: reserved_qty = possible_to_take
                 self.product_connector.reserve_product(product['_id'], reserved_qty)
                 to_take -= reserved_qty
                 taken.append((product, reserved_qty))
@@ -29,14 +34,14 @@ class RecordManager:
     #TODO make it in transaction
     def handle_order(self, order: Order):
         taken = self.reserve_products(order['order_items'])
-        user = self.user_connector.get_free_users()
+        user = self.user_connector.get_free_users()[0]
         self.user_connector.change_user_state(user, True)
         return Record(**{
             "worker_id": user['user_id'],
             "date_started": datetime.datetime.now().isoformat(),
             "products": [
                 RecordItem(**{
-                    'product_id': product['_id'],
+                    'product_id': str(product['_id']),
                     'qty': qty,
                     'regal': product['regal'],
                     'column': product['column'],
@@ -45,19 +50,4 @@ class RecordManager:
             ],
             "distance": -1
         })
-
-
-    # def create_record(self, order: Order, user_id):
-    #     print(order['items'])
-    #     for item in order['items']:
-    #         records_elements = self.db.get_available_items(item)
-            # for it in records_elements:
-            #     self.db.reserve_item(it)
-
-
-    # def assign_worker(self):
-    #     user = self.db.get_free_users()[0]
-
-
-
 

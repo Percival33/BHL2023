@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from connectors.ABCConnector import DatabaseConnector
 from models import ItemType
 
@@ -17,4 +19,4 @@ class ItemConnector(DatabaseConnector):
     #     return list(items)
     #
     def collect_item(self, item_id):
-        self.items_table.update_one({"_id": item_id}, {"$set": {'state': ItemType.COLLECTED}}, upsert=False)
+        self.items_table.update_one({"_id": ObjectId(item_id)}, {"$set": {'state': ItemType.COLLECTED}}, upsert=False)
