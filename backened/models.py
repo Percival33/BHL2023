@@ -1,6 +1,5 @@
 from datetime import datetime
-from typing import List
-
+from enum import Enum
 from pydantic import BaseModel
 
 
@@ -18,22 +17,33 @@ class Item(BaseModel):
 
 
 class Order(BaseModel):
-    items: List[str]
+    items: list[str]
     date_order: str
 
 
 class Record(BaseModel):
-    items: List[Item]
+    items: list[Item]
     date_assigned: datetime
     date_collected: datetime
     distance: int
+
+
+class RecordType(str, Enum):
+    finished_task = "finished_task"
+    defect = "defect"
+    taken_product = "taken_product"
+
+
+class RecordResponse(BaseModel):
+    type: RecordType
+    content: Record
 
 
 class User(BaseModel):
     name: str
     last_name: str
     is_free: bool
-    orders: List[Order]
+    orders: list[Order]
 
 
 class UserModel(BaseModel):
