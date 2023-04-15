@@ -7,6 +7,11 @@ const employees = [
     { id: 3, name: 'Bob Johnson' },
     { id: 4, name: 'Lisa Brown' },
     { id: 5, name: 'Tom Wilson' },
+    { id: 6, name: 'John Smith'},
+    { id: 7, name: 'Jane Doe'},
+    { id: 8, name: 'Bob Johnson' },
+    { id: 9, name: 'Lisa Brown' },
+    { id: 10, name: 'Tom Wilson' },
 ];
 
 const EmployeeList = () => {
@@ -21,7 +26,7 @@ const EmployeeList = () => {
 
     return (
         <div className="h-full flex flex-col p-4">
-            <h2 className="text-lg font-nunitobold mb-4">Pracownicy</h2>
+            <h2 className="text-lg font-nunitobold mb-4 text-center">Pracownicy</h2>
             <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
                 {employees.map((employee) => (
                     <li key={employee.id} className="py-4 hover:shadow-xl active:scale-95 transition duration-150 cursor-pointer" onClick={()=>handleEmployeeClick(employee)}>

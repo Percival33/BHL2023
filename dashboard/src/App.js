@@ -5,17 +5,26 @@ import EmployeeList from './components/Employees/EmployeeList';
 import ProblemList from './components/Problems/ProblemList';
 import HeatMap from './components/HeatMap/HeatMap';
 
-
 const App = () => {
   return (
     <>
       <Header />
       <div className="bg-bluenormal h-screen">
-        <div className="grid grid-cols-2 grid-rows-2 gap-2">
-          <div className="bg-white h-full flex justify-center items-center ml-2"><OrderChart/></div>
-          <div className="bg-white mr-2"><EmployeeList /></div>
-          <div className="bg-white ml-2"><ProblemList /></div>
-          <div className="bg-white h-full flex justify-center items-center mr-2"><HeatMap/></div>
+        <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full overflow-y-auto">
+          <div className="bg-white ml-2 rounded-xl flex flex-col justify-center items-center">
+            <OrderChart />
+          </div>
+          <div className="bg-white mr-2 rounded-xl flex flex-col">
+            <EmployeeList />
+          </div>
+          <div className="bg-white ml-2 rounded-xl flex flex-col mb-2">
+            <ProblemList />
+          </div>
+          <div className="bg-white mr-2 rounded-xl flex flex-col mb-2 justify-center items-center">
+            <h2 className="text-lg font-nunitobold mb-4 text-center">Problemy</h2>
+            <HeatMap />
+          </div>
+
         </div>
       </div>
     </>
@@ -23,5 +32,3 @@ const App = () => {
 };
 
 export default App;
-
-
