@@ -1,6 +1,6 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/
+GET http://127.0.0.1:8080/
 Accept: application/json
 ###
 
@@ -13,8 +13,14 @@ Content-Type: application/json
 
 {
     "items": [
-      "643ab0ff4b42ff95f745ba2a",
-      "643ab10f4b42ff95f745ba2b"
+      {
+        "id": "643ab0ff4b42ff95f745ba2a",
+        "quantity": 1
+      },
+      {
+        "id": "643ab10f4b42ff95f745ba2b",
+        "quantity": 1
+      }
     ],
     "date_order": "2008-09-15T15:53:00+05:00"
 }
