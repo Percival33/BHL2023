@@ -23,6 +23,7 @@ def root():
 
 @app.post("/order")
 async def say_hello(order: Order):
+    order = jsonable_encoder(order)
     print(order)
     await worker_manager.send_to_user("hello", json.dumps(order))
     return "sent"
