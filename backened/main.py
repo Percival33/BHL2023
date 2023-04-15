@@ -10,7 +10,6 @@ client = MongoClient(f"{settings.DB_URL}/{settings.DB_NAME}")
 app = FastAPI()
 db = client['dev']
 
-
 @app.get("/", response_model=list[UserModel])
 def root():
     return list(db['user'].find({}))
