@@ -28,6 +28,11 @@ class Record(BaseModel):
     distance: int
 
 
+class RecordResponse(BaseModel):
+    type: str
+    content: Record
+
+
 class User(BaseModel):
     name: str
     last_name: str
