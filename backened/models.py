@@ -78,6 +78,7 @@ class RecordItemResponseType(str, Enum):  # returned from frontend
 class RecordItemResponse(BaseModel):
     type: RecordItemResponseType
     item_id: str
+    product_id: str
 
 
 class RecordResponseType(str, Enum):
