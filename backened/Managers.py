@@ -1,5 +1,6 @@
 from fastapi import WebSocket
 
+
 class WorkersManager:
     def __init__(self):
         self.active_connections: dict[str, WebSocket] = {}
