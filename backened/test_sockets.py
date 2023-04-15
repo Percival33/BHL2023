@@ -36,7 +36,7 @@ async def test_taken_product():
 
 
 def test_defect(w):
-    print("test_defect")
+    # print("test_defect")
     while True:
         w.send(json.dumps({
             "type": "defect",
@@ -49,13 +49,13 @@ def test_defect(w):
 def test_register_dashboard(w):
     while True:
         res = w.recv()
-        # print(json.loads(res))
+        print(json.loads(res))
 
 
 def test_register_dashboard2(w):
     while True:
         res = w.recv()
-        # print(json.loads(res))
+        print(json.loads(res))
 
 
 def communicate(w1, w2, w3):

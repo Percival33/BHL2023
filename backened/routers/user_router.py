@@ -2,8 +2,8 @@ import json
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from beans import user_manager, defect_connector, item_connector
-from models import RecordItemResponseType, Defect
+from beans import user_manager, defect_connector, item_connector, dashboard_manager
+from models import RecordItemResponseType, Defect, DefectType
 from datetime import datetime
 
 router = APIRouter()
@@ -16,7 +16,7 @@ async def socket_test(websocket: WebSocket, user_id: str):
         while True:
             response = await websocket.receive_json()
             msg = handle_response(response, user_id)
-            await websocket.send_json(json.dumps(str(msg)))
+            await dashboard_manager.broadcast(msg)
     except WebSocketDisconnect:
         print("Connection closed")
 
@@ -27,18 +27,22 @@ def handle_response(response, user_id):
             item_id=response["item_id"],
             comment=response["content"],
             date=str(datetime.timestamp(datetime.now())),
-            worker_id=user_id
+            worker_id=user_id,
+            state=DefectType.REPORTED
         )
-        # defect_connector.report_defect(defect)
-        print(defect)
-        return defect
+        defect_connector.report_defect(defect)
+        return defect.json()
     elif response["type"] == RecordItemResponseType.SCANNED_ITEM:
         item_connector.scan_item(item_id=response["item_id"])
-# @router.websocket("/dashboard")
-# async def socket_test(websocket: WebSocket):
-#     await dashboard_manager.connect(websocket, user_id)
-#     try:
-#         while True:
-#             response = await websocket.receive_json()
-#     except WebSocketDisconnect:
-#         print("Connection closed")
+        return ""
+    return ""
+
+
+@router.websocket("/dashboard/{dashboard_id}")
+async def register_dashboard(websocket: WebSocket, dashboard_id):
+    await dashboard_manager.connect(websocket, dashboard_id)
+    try:
+        while True:
+            res = await websocket.receive()
+    except WebSocketDisconnect:
+        print("Connection closed")

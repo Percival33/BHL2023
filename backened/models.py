@@ -117,8 +117,8 @@ class User(BaseModel):
 
 
 class DefectType(str, Enum):  # defect reported by worker to system
-    REPORTED = "reported"
-    RESOLVED = "resolved"
+    REPORTED: str = "reported"
+    RESOLVED: str = "resolved"
 
 
 class Defect(BaseModel):
