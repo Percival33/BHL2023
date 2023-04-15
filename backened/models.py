@@ -17,6 +17,7 @@ class Item(BaseModel):
 
 
 class Order(BaseModel):
+    items: List[str]
     date_order: str
 
 
