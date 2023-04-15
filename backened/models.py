@@ -65,7 +65,7 @@ class Record(BaseModel):
     products: list[RecordItem]
     worker_id: str
     date_started: str
-    date_finished: str
+    date_finished: str = None
     state: RecordState = RecordState.CREATED
     distance: int
 

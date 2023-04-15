@@ -7,7 +7,7 @@ class UserConnector(DatabaseConnector):
         self.users_table = self.db['user']
 
     def get_free_users(self):
-        return list(self.users_table.find({'is_free': True}))
+        return list(self.users_table.find({'assigned': False}))
 
     def change_user_state(self, user, state):
         self.users_table.update_one({"_id": user['_id']}, {"$set": {"state": state}})
