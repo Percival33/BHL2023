@@ -20,7 +20,7 @@ const EmployeeList = () => {
     }
 
     return (
-        <div className="bg-bluesuperlight h-full flex flex-col p-4">
+        <div className="h-full flex flex-col p-4">
             <h2 className="text-lg font-nunitobold mb-4">Pracownicy</h2>
             <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
                 {employees.map((employee) => (
