@@ -56,7 +56,7 @@ const ProblemList = () => {
   }
 
   return (
-    <div className="bg-bluesuperlight h-full flex flex-col p-4">
+    <div className="h-full flex flex-col p-4">
       <h2 className="text-lg font-nunitobold mb-4 ml-24">Problemy</h2>
       <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
         {problems.map((problem) => (
@@ -66,7 +66,7 @@ const ProblemList = () => {
                 <MoonIcon className="h-[1em] w-auto mr-1 stroke-white" />
                 : <button className="px-4 py-2 rounded-full bg-green-500 text-white font-semibold text-sm lg:text-base" onClick={() => handleProblemSolve(problem)}>
                   Accept
-                </button>} TODO!!!*/}
+                </button>} TODO!!! */}
 
             </div>
             <div className="flex flex-col space-y-2 flex-1 duration-150 cursor-pointer active:scale-95" onClick={() => handleProblemCheck(problem)}>
