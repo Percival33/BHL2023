@@ -5,7 +5,7 @@ from fastapi.encoders import jsonable_encoder
 from pymongo.mongo_client import MongoClient
 from Managers import WorkersManager
 
-from models import UserModel, Order, RecordType, Record
+from models import UserModel, Order, RecordItemType, Record
 from config import settings
 import uvicorn
 
@@ -34,11 +34,11 @@ async def socket_test(websocket: WebSocket, worker_id: str):
     try:
         while True:
             response = await websocket.receive_json()
-            if response["type"] == RecordType.finished_task:
+            if response["type"] == RecordItemType.finished_task:
                 finish_record(response["content"])
-            elif response["type"] == RecordType.defect:
+            elif response["type"] == RecordItemType.defect:
                 handle_defect(response["content"])
-            elif response["type"] == RecordType.taken_product:
+            elif response["type"] == RecordItemType.taken_product:
                 taken_product(response["content"])
     except WebSocketDisconnect:
         print("Connection closed")
@@ -46,7 +46,7 @@ async def socket_test(websocket: WebSocket, worker_id: str):
 
 def finish_record(record: Record):
     print(record)
-    db.
+    db.records
     pass
 
 
