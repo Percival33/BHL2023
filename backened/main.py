@@ -6,7 +6,7 @@ from models import UserModel
 from config import settings
 import uvicorn
 
-client = MongoClient(f"{settings.DB_URL}")
+client = MongoClient(f"{settings.DB_URL}/{settings.DB_NAME}")
 app = FastAPI()
 db = client['dev']
 
