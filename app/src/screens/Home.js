@@ -5,9 +5,12 @@ import Hint from "../components/Hint";
 import Button from "../components/Button";
 import colors from "../styles/colors";
 import NewTask from "../components/NewTask";
+import task from "../data"
 
 
 export default function Home({navigation}) {
+    const myTasks = [task];
+
     return (
         <View style={[
             styles.container,
@@ -17,7 +20,8 @@ export default function Home({navigation}) {
             </View>
             <View style={styles.taskContainer}>
                 <NewTask
-                    title={'Skompletuj zamówienie'}
+                    taskId={myTasks[0].id}
+                    title={'Skompletuj zlecenie'}
                     receivedAt={[12, 46]}
                 />
             </View>
@@ -26,7 +30,7 @@ export default function Home({navigation}) {
                     color={colors.primaryBlue}
                     isPrimary={true}
                     text={'Rozpocznij'}
-                    onPress={() => navigation.navigate('Task', {
+                    onPress={() => navigation.push('Task', {
                         'text': 'hello world',
                     })
                 }/>
