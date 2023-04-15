@@ -1,21 +1,18 @@
 import {View, StyleSheet, Text} from "react-native";
 import colors from "../styles/colors";
 
-export default function NewTask(props) {
-    const receivedHours = props.receivedAt[0] || 'XX';
-    const receivedMinutes = props.receivedAt[1] || 'XX';
-    const receivedStr = receivedHours + ':' + receivedMinutes;
+export default function NextStep(props) {
+    const bullet = '\u2022';
 
     return (
         <View style={[styles.container, props.style || {}]}>
             <Text style={styles.title}>{props.title}</Text>
             <View style={styles.descriptionContainer}>
-                <Text style={styles.descriptionText}>
-                    Numer zlecenia: #{props.taskId}
-                </Text>
-                <Text style={styles.descriptionText}>
-                    To zadanie otrzymałeś o <Text style={styles.receivedText}>{receivedStr}</Text>.
-                </Text>
+                {
+                    props.children.map((obj, idx) =>
+                        <Text key={idx} style={styles.descriptionText}>{bullet} {obj}</Text>
+                    )
+                }
             </View>
         </View>
     );
@@ -33,17 +30,13 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'Nunito-Bold',
-        fontSize: 24,
+        fontSize: 28,
         marginBottom: 8
     },
     descriptionContainer: {
     },
     descriptionText: {
         fontFamily: 'Nunito-Regular',
-        fontSize: 18,
+        fontSize: 22,
     },
-    receivedText: {
-        fontFamily: 'Nunito-Bold',
-        fontSize: 18,
-    }
 });

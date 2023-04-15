@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
     text: {
         color: colors.primaryBlue,
         fontFamily: 'Nunito-Bold',
-        fontSize: 20
+        fontSize: 18
     }
 });

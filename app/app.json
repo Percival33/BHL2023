@@ -25,6 +25,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "Zezwól Ale to ty dzwonisz na dostęp do kamery"
+        }
+      ]
+    ]
   }
 }

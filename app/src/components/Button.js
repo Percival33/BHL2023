@@ -17,7 +17,7 @@ export default function Button(props) {
     }
 
     return (
-        <TouchableOpacity activeOpacity={0.6} onPress={props.onPress} style={[styles.button, buttonStyle]}>
+        <TouchableOpacity activeOpacity={0.6} onPress={props.onPress} style={[styles.button, buttonStyle, props.style]}>
             <Text style={[styles.text, textStyle]}>{props.text}</Text>
         </TouchableOpacity>
     );
