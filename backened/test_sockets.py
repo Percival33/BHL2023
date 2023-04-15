@@ -1,4 +1,5 @@
 import asyncio
+
 import json
 
 import websockets
@@ -46,3 +47,4 @@ async def test_defect():
 asyncio.get_event_loop().run_until_complete(test_defect())
 # asyncio.get_event_loop().run_until_complete(test_taken_product())
 asyncio.get_event_loop().run_forever()
+
