@@ -23,7 +23,7 @@ const problems = [
 
 const ProblemList = () => {
   return (
-    <div className="bg-gray-100 h-full flex flex-col p-4 lg:w-1/2 xl:w-1/3">
+    <div className="bg-gray-100 h-full flex flex-col p-4">
       <h2 className="text-lg font-bold mb-4">Problemy</h2>
       <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
         {problems.map((problem) => (
