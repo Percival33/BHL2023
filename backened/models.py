@@ -4,28 +4,28 @@ from typing import List
 from pydantic import BaseModel
 
 
-class Item:
+class Item(BaseModel):
     code: str
     name: str
-    state: str
+    state: str # on shelf, proccesed, collected
     regal: int
     column: int
     shelf: int
 
 
-class Order:
+class Order(BaseModel):
     items: List[Item]
     date_order: datetime
 
 
-class Record:
+class Record(BaseModel):
     items: List[Item]
     date_assigned: datetime
     date_collected: datetime
     distance: int
 
 
-class Worker:
+class Worker(BaseModel):
     name: str
     last_name: str
     is_free: bool
