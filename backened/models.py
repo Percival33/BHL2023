@@ -30,3 +30,7 @@ class Worker(BaseModel):
     last_name: str
     is_free: bool
     orders: List[Order]
+
+class UserModel(BaseModel):
+    name: str
+    lastName: str
