@@ -7,3 +7,14 @@ Accept: application/json
 GET http://127.0.0.1:8000/hello/User
 Accept: application/json
 ###
+
+POST http://localhost:8080/order
+Content-Type: application/json
+
+{
+    "items": [
+      "643ab0ff4b42ff95f745ba2a",
+      "643ab10f4b42ff95f745ba2b"
+    ],
+    "date_order": "2008-09-15T15:53:00+05:00"
+}

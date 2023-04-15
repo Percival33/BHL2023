@@ -3,6 +3,9 @@ from typing import List
 
 from pydantic import BaseModel
 
+class Product(BaseModel):
+    name: str
+
 
 class Item(BaseModel):
     code: str
@@ -14,8 +17,8 @@ class Item(BaseModel):
 
 
 class Order(BaseModel):
-    items: List[Item]
-    date_order: datetime
+    items: List[str]
+    date_order: str
 
 
 class Record(BaseModel):
@@ -25,7 +28,7 @@ class Record(BaseModel):
     distance: int
 
 
-class Worker(BaseModel):
+class User(BaseModel):
     name: str
     last_name: str
     is_free: bool

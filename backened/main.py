@@ -1,12 +1,17 @@
+import json
+
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi.encoders import jsonable_encoder
 from pymongo.mongo_client import MongoClient
 from time import sleep
+from Managers import WorkersManager
 
-from models import UserModel
+from models import UserModel, Order
 from config import settings
 import uvicorn
 
-client = MongoClient(f"{settings.DB_URL}/{settings.DB_NAME}")
+client = MongoClient(f"{settings.DB_URL}")
+worker_manager = WorkersManager()
 app = FastAPI()
 db = client['dev']
 
@@ -15,17 +20,20 @@ def root():
     return list(db['user'].find({}))
 
 
-@app.get("/hello/{name}")
-def say_hello(name: str):
-    return ""
+@app.post("/order")
+async def say_hello(order: Order):
+    order = jsonable_encoder(order)
+    print(order)
+    await worker_manager.send_to_user("hello", json.dumps(order))
+    return "sent"
 
 
-@app.websocket("/")
-async def socket_test(websocket: WebSocket):
-    await websocket.accept()
+@app.websocket("/work/{worker_id}")
+async def socket_test(websocket: WebSocket, worker_id: str):
+    await worker_manager.connect(websocket, worker_id)
     try:
         while True:
-            await websocket.send_text("hello")
+            await websocket.receive()
     except WebSocketDisconnect:
         print("Connection closed")
 
