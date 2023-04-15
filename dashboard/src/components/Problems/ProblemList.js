@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProblemModal from './ProblemModal';
+import { MoonIcon } from '@heroicons/react/outline';
 
 const ProblemList = () => {
   const [problems, setProblems] = useState([
@@ -32,7 +33,7 @@ const ProblemList = () => {
     content: null,
     date: null,
     solved: false
-  },)  
+  },)
 
   const handleProblemCheck = (problem) => {
     setProblem(problem)
@@ -52,8 +53,6 @@ const ProblemList = () => {
         }
       });
     });
-
-    //setShowModal(true)
   }
 
   return (
@@ -63,11 +62,14 @@ const ProblemList = () => {
         {problems.map((problem) => (
           <li key={problem.id} className="py-4 transition flex items-center">
             <div className="mr-4">
-              <button className="px-4 py-2 rounded-full bg-green-500 text-white font-semibold text-sm lg:text-base" onClick={()=>handleProblemSolve(problem)}>
-                {problem.solved ? 'Solved' : 'Accept'}
-              </button>
+              {/* {problem.solved ?
+                <MoonIcon className="h-[1em] w-auto mr-1 stroke-white" />
+                : <button className="px-4 py-2 rounded-full bg-green-500 text-white font-semibold text-sm lg:text-base" onClick={() => handleProblemSolve(problem)}>
+                  Accept
+                </button>} TODO!!!*/}
+
             </div>
-            <div className="flex flex-col space-y-2 flex-1 duration-150 cursor-pointer active:scale-95" onClick={()=>handleProblemCheck(problem)}>
+            <div className="flex flex-col space-y-2 flex-1 duration-150 cursor-pointer active:scale-95" onClick={() => handleProblemCheck(problem)}>
               <div className="flex items-center justify-between">
                 <p className="text-gray-900 font-nunitobold">{problem.author}</p>
                 <p className="text-gray-500 text-sm">{problem.date}</p>
