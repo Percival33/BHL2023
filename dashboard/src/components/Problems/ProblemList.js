@@ -27,7 +27,7 @@ const ProblemList = () => {
       <h2 className="text-lg font-bold mb-4">Problemy</h2>
       <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
         {problems.map((problem) => (
-          <li key={problem.id} className="py-4">
+          <li key={problem.id} className="py-4 active:scale-95 transition duration-150 cursor-pointer">
             <div className="flex flex-col space-y-2">
               <div className="flex items-center justify-between">
                 <p className="text-gray-900 font-medium">{problem.author}</p>
