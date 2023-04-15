@@ -7,6 +7,11 @@ const employees = [
     { id: 3, name: 'Bob Johnson' },
     { id: 4, name: 'Lisa Brown' },
     { id: 5, name: 'Tom Wilson' },
+    { id: 6, name: 'John Smith'},
+    { id: 7, name: 'Jane Doe'},
+    { id: 8, name: 'Bob Johnson' },
+    { id: 9, name: 'Lisa Brown' },
+    { id: 10, name: 'Tom Wilson' },
 ];
 
 const EmployeeList = () => {

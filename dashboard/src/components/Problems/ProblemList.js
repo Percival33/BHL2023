@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ProblemModal from './ProblemModal';
 import { MoonIcon } from '@heroicons/react/outline';
+import ProblemSolved from './ProblemSolved';
+import ProblemNotSolved from './ProblemNotSolved';
 
 const ProblemList = () => {
   const [problems, setProblems] = useState([
@@ -20,6 +22,27 @@ const ProblemList = () => {
     },
     {
       id: 3,
+      author: 'Bob Johnson',
+      content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+      date: '2022-04-16',
+      solved: false
+    },
+    {
+      id: 4,
+      author: 'John Doe',
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      date: '2022-04-18',
+      solved: false
+    },
+    {
+      id: 5,
+      author: 'Jane Smith',
+      content: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
+      date: '2022-04-17',
+      solved: false
+    },
+    {
+      id: 6,
       author: 'Bob Johnson',
       content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
       date: '2022-04-16',
@@ -60,23 +83,10 @@ const ProblemList = () => {
       <h2 className="text-lg font-nunitobold mb-4 text-center">Problemy</h2>
       <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
         {problems.map((problem) => (
-          <li key={problem.id} className="py-4 transition flex items-center bg-bluesuperlight px-4 rounded-xl my-2">
-            <div className="mr-4">
-              <button
-                className="px-4 py-2 rounded-full bg-green-500 text-white font-semibold text-sm lg:text-base duration-150 cursor-pointer active:scale-90"
-                onClick={() => handleProblemSolve(problem)}
-              >
-                Accept
-              </button>
-            </div>
-            <div className="flex flex-col space-y-2 flex-1 duration-150 cursor-pointer active:scale-95" onClick={() => handleProblemCheck(problem)}>
-              <div className="flex items-center justify-between">
-                <p className="text-gray-900 font-nunitobold">{problem.author}</p>
-                <p className="text-gray-500 text-sm">{problem.date}</p>
-              </div>
-              <p className="text-gray-800">{problem.content}</p>
-            </div>
-          </li>
+          <>
+            {problem.solved ? <ProblemSolved problem={problem} handleProblemSolve={handleProblemSolve} handleProblemCheck={handleProblemCheck} />
+              : <ProblemNotSolved problem={problem} handleProblemSolve={handleProblemSolve} handleProblemCheck={handleProblemCheck} />}
+          </>
         ))}
 
       </ul>
