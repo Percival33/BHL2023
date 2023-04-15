@@ -3,6 +3,7 @@ from typing import List
 
 from pydantic import BaseModel
 
+
 class Product(BaseModel):
     name: str
 
@@ -10,7 +11,7 @@ class Product(BaseModel):
 class Item(BaseModel):
     code: str
     name: str
-    state: str # on shelf, proccesed, collected
+    state: str  # on shelf, proccesed, collected
     regal: int
     column: int
     shelf: int
@@ -33,6 +34,7 @@ class User(BaseModel):
     last_name: str
     is_free: bool
     orders: List[Order]
+
 
 class UserModel(BaseModel):
     name: str

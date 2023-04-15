@@ -15,6 +15,7 @@ worker_manager = WorkersManager()
 app = FastAPI()
 db = client['dev']
 
+
 @app.get("/", response_model=list[UserModel])
 def root():
     return list(db['user'].find({}))
@@ -33,7 +34,8 @@ async def socket_test(websocket: WebSocket, worker_id: str):
     await worker_manager.connect(websocket, worker_id)
     try:
         while True:
-            await websocket.receive()
+            response = await websocket.receive_text()
+            print(response)
     except WebSocketDisconnect:
         print("Connection closed")
 

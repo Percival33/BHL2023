@@ -6,6 +6,8 @@ async def test():
         while True:
             response = await websocket.recv()
             print(response)
+            await websocket.send("ala ma kota")
 
 asyncio.get_event_loop().run_until_complete(test())
 asyncio.get_event_loop().run_forever()
+
