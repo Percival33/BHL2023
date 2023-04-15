@@ -1,19 +1,19 @@
 from fastapi import WebSocket
 
 
-class WorkersManager:
+class UserManager:
     def __init__(self):
         self.active_connections: dict[str, WebSocket] = {}
 
-    async def connect(self, websocket: WebSocket, username: str):
+    async def connect(self, websocket: WebSocket, user_id: str):
         await websocket.accept()
-        self.active_connections[username] = websocket
+        self.active_connections[user_id] = websocket
 
-    def disconnect(self, username):
-        self.active_connections.pop(username)
+    def disconnect(self, user_id):
+        self.active_connections.pop(user_id)
 
-    async def send_to_user(self, username: str, message: str):
-        soc = self.active_connections[username]
+    async def send_to_user(self, user_id: str, message: str):
+        soc = self.active_connections[user_id]
         await soc.send_json(message)
 
     async def broadcast(self, message: str):

@@ -70,7 +70,7 @@ class Record(BaseModel):
     distance: int
 
 
-class RecordItemResponseType(BaseModel):  # returned from frontend
+class RecordItemResponseType(str, Enum):  # returned from frontend
     DEFECT = "defect"
     SCANNED_ITEM = "scanned_item"
 
@@ -80,7 +80,7 @@ class RecordItemResponse(BaseModel):
     item_id: str
 
 
-class RecordResponseType(BaseModel):
+class RecordResponseType(str, Enum):
     FINISHED_TASK = "finished_task"
     ERROR = "error"  # TODO: handle error on frontend
 
@@ -90,7 +90,7 @@ class RecordResponse(BaseModel):
     record_id: str
 
 
-class TaskType(BaseModel):
+class TaskType(str, Enum):
     NEW_TASK = "new_task"
 
 
@@ -99,7 +99,7 @@ class Task(BaseModel):  # message for frontend
     content: Record
 
 
-class AnnouncementType(BaseModel):  # message to worker
+class AnnouncementType(str, Enum):  # message to worker
     BREAK = "break"  # message for worker to go for a break
 
 
@@ -116,7 +116,7 @@ class User(BaseModel):
     user_id: str  # shorter than mongo id
 
 
-class DefectType(BaseModel):  # defect reported by worker to system
+class DefectType(str, Enum):  # defect reported by worker to system
     REPORTED = "reported"
     RESOLVED = "resolved"
 
