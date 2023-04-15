@@ -3,6 +3,9 @@ from typing import List
 
 from pydantic import BaseModel
 
+ON_SHELF = "on_shelf"
+PROCESSED = "processed"
+
 class Product(BaseModel):
     name: str
 
@@ -16,13 +19,20 @@ class Item(BaseModel):
     shelf: int
 
 
+class OrderItem(BaseModel):
+    id: str
+    quantity: int
+
+
 class Order(BaseModel):
-    items: List[str]
+    items: list[OrderItem]
     date_order: str
 
 
 class Record(BaseModel):
-    items: List[Item]
+    items: list[Item]
+    worker_id: str
+    state: str
     date_assigned: datetime
     date_collected: datetime
     distance: int
@@ -38,7 +48,5 @@ class User(BaseModel):
     last_name: str
     is_free: bool
     orders: List[Order]
+    username: str
 
-class UserModel(BaseModel):
-    name: str
-    lastName: str
