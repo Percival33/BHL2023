@@ -1,6 +1,6 @@
 //import { LocationMarkerIcon, PhoneIcon, MailIcon, TrendingDownIcon } from '@heroicons/react/solid';
 
-export default function EmployeeModal({ setShowModal }) {
+export default function EmployeeModal({ setShowModal, employee }) {
 
     return (
         <>
@@ -11,7 +11,7 @@ export default function EmployeeModal({ setShowModal }) {
                         {/*header*/}
                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                             <h3 className="text-3xl font-semibold overflow-ellipsis max-w-xs">
-                                Pracownik
+                                {employee.name}
                             </h3>
                         </div>
                         {/*body*/}
@@ -46,13 +46,6 @@ export default function EmployeeModal({ setShowModal }) {
                                 onClick={() => setShowModal(false)}
                             >
                                 Zamknij
-                            </button>
-                            <button
-                                className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => setShowModal(false)}
-                            >
-                                Strona
                             </button>
                         </div>
                     </div>

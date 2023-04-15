@@ -11,14 +11,20 @@ const employees = [
 
 const EmployeeList = () => {
     const [showModal, setShowModal] = useState(false)
-    console.log(showModal)
+    const [employee, setEmployee] = useState({id: null, name: null})
+
+    const handleEmployeeClick = (employee) => {
+        setEmployee(employee)
+
+        setShowModal(true)
+    }
 
     return (
         <div className="bg-bluesuperlight h-full flex flex-col p-4">
             <h2 className="text-lg font-bold mb-4">Pracownicy</h2>
             <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
                 {employees.map((employee) => (
-                    <li key={employee.id} className="py-4" onClick={()=>setShowModal(true)}>
+                    <li key={employee.id} className="py-4 hover:shadow-xl active:scale-95 transition duration-150 cursor-pointer" onClick={()=>handleEmployeeClick(employee)}>
                         <div className="flex items-center space-x-4">
                             <div className="flex-shrink-0 h-10 w-10 rounded-full bg-bluelight"></div>
                             <div className="flex-1 min-w-0">
@@ -29,7 +35,7 @@ const EmployeeList = () => {
                 ))}
             </ul>
 
-            {showModal ? <EmployeeModal setShowModal={setShowModal}/> : null}
+            {showModal ? <EmployeeModal setShowModal={setShowModal} employee={employee}/> : null}
         </div>
 
     );
