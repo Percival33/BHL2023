@@ -1,42 +1,70 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+import React from 'react'
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale, // x
+  LinearScale, // y
+  PointElement,
+  Legend,
+  Tooltip
+} from 'chart.js';
 
-const chartData = [
-  {
-    id: 1,
-    year: 2016,
-    userGain: 80000,
-    userLost: 823,
-  },
-  {
-    id: 2,
-    year: 2017,
-    userGain: 45677,
-    userLost: 345,
-  },
-  {
-    id: 3,
-    year: 2018,
-    userGain: 78888,
-    userLost: 555,
-  },
-  {
-    id: 4,
-    year: 2019,
-    userGain: 90000,
-    userLost: 4555,
-  },
-  {
-    id: 5,
-    year: 2020,
-    userGain: 4300,
-    userLost: 234,
-  },
-];
+ChartJS.register(
+  LineElement,
+  CategoryScale, // x
+  LinearScale, // y
+  PointElement,
+  Legend,
+  Tooltip
+)
 
-function OrderChart() {
-  return <Line data={chartData} />;
+const OrderChart = () => {
+
+  const data = {
+    labels: ['Mon', 'Tue', 'Wed'],
+    datasets: [
+      {
+        label: '369',
+        data: [3, 6, 4],
+        backgroundColor: 'acqua',
+        borderColor: 'black',
+        pointBorderColor: 'red',
+        fill: true,
+        tension: 0.4
+      },
+      {
+        label: '369',
+        data: [3, 3, 3],
+        backgroundColor: 'acqua',
+        borderColor: 'black',
+        pointBorderColor: 'red',
+        fill: true,
+        tension: 0.4
+      }
+    ]
+  }
+
+  const options = {
+    plugins: {
+      legend: true
+    },
+    scales: {
+      y: {
+        min: 3,
+        max: 9
+      }
+    }
+  }
+
+  return (
+    <div>
+      <Line
+        data={data}
+        options={options}
+      ></Line>
+    </div>
+  )
 }
 
-export default OrderChart;
+export default OrderChart
