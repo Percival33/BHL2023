@@ -1,43 +1,18 @@
 import json
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-from fastapi.encoders import jsonable_encoder
-from pymongo.mongo_client import MongoClient
-from time import sleep
-from Managers import WorkersManager
 
-from models import UserModel, Order
+from connectors.ABCConnector import DatabaseConnector
+from routers.order_router import router as order_router
+from routers.user_router import router as user_router
+
 from config import settings
 import uvicorn
 
 
-client = MongoClient(f"{settings.DB_URL}")
-worker_manager = WorkersManager()
+db_connector = DatabaseConnector(settings.DB_URL)
 app = FastAPI()
-db = client['dev']
-
-@app.get("/", response_model=list[UserModel])
-def root():
-    return list(db['user'].find({}))
-
-
-@app.post("/order")
-async def say_hello(order: Order):
-    order = jsonable_encoder(order)
-    print(order)
-    await worker_manager.send_to_user("hello", json.dumps(order))
-    return "sent"
-
-
-@app.websocket("/work/{worker_id}")
-async def socket_test(websocket: WebSocket, worker_id: str):
-    await worker_manager.connect(websocket, worker_id)
-    try:
-        while True:
-            await websocket.receive()
-    except WebSocketDisconnect:
-        print("Connection closed")
-
+app.include_router(order_router, prefix="/order", tags=['order'])
+app.include_router(user_router, prefix="/user", tags=['user'])
 
 if __name__ == "__main__":
     uvicorn.run(
