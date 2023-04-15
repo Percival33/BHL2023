@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ProblemModal from './ProblemModal';
-import { MoonIcon } from '@heroicons/react/outline';
 import ProblemSolved from './ProblemSolved';
 import ProblemNotSolved from './ProblemNotSolved';
 
@@ -87,29 +86,7 @@ const ProblemList = () => {
             {problem.solved ? <ProblemSolved problem={problem} handleProblemSolve={handleProblemSolve} handleProblemCheck={handleProblemCheck} />
               : <ProblemNotSolved problem={problem} handleProblemSolve={handleProblemSolve} handleProblemCheck={handleProblemCheck} />}
           </>
-          
-      <h2 className="text-lg font-nunitobold mb-4 ml-24">Problemy</h2>
-      <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
-        {problems.map((problem) => (
-          <li key={problem.id} className="py-4 transition flex items-center">
-            <div className="mr-4">
-              {/* {problem.solved ?
-                <MoonIcon className="h-[1em] w-auto mr-1 stroke-white" />
-                : <button className="px-4 py-2 rounded-full bg-green-500 text-white font-semibold text-sm lg:text-base" onClick={() => handleProblemSolve(problem)}>
-                  Accept
-                </button>} TODO!!! */}
-
-            </div>
-            <div className="flex flex-col space-y-2 flex-1 duration-150 cursor-pointer active:scale-95" onClick={() => handleProblemCheck(problem)}>
-              <div className="flex items-center justify-between">
-                <p className="text-gray-900 font-nunitobold">{problem.author}</p>
-                <p className="text-gray-500 text-sm">{problem.date}</p>
-              </div>
-              <p className="text-gray-800">{problem.content}</p>
-            </div>
-          </li>
         ))}
-
       </ul>
       {showModal ? <ProblemModal setShowModal={setShowModal} problem={problem} /> : null}
     </div>
