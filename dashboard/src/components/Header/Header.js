@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { CogIcon } from '@heroicons/react/outline';
 
 const Header = () => {
@@ -10,6 +11,7 @@ const Header = () => {
       <button className="mr-4">
         <CogIcon className="h-6 w-6 stroke-current text-white" />
       </button>
+
     </header>
   );
 };
