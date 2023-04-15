@@ -58,7 +58,7 @@ const OrderChart = () => {
   }
 
   return (
-    <div>
+    <div className='w-3/4 h-3/4'>
       <Line
         data={data}
         options={options}

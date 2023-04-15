@@ -11,7 +11,7 @@ const App = () => {
       <Header />
       <div className="grid grid-cols-2 grid-rows-2 gap-2 h-screen">
         <div className="bg-bluesuperlight"><EmployeeList /></div>
-        <div className="bg-bluelight"><OrderChart/></div>
+        <div className="bg-bluelight h-full flex justify-center items-center"><OrderChart/></div>
         <div className="bg-bluelight"></div>
         <div className="bg-bluesuperlight"><ProblemList /></div>
       </div>
