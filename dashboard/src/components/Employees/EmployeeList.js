@@ -21,14 +21,14 @@ const EmployeeList = () => {
 
     return (
         <div className="bg-bluesuperlight h-full flex flex-col p-4">
-            <h2 className="text-lg font-bold mb-4">Pracownicy</h2>
+            <h2 className="text-lg font-nunitobold mb-4">Pracownicy</h2>
             <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
                 {employees.map((employee) => (
                     <li key={employee.id} className="py-4 hover:shadow-xl active:scale-95 transition duration-150 cursor-pointer" onClick={()=>handleEmployeeClick(employee)}>
                         <div className="flex items-center space-x-4">
                             <div className="flex-shrink-0 h-10 w-10 rounded-full bg-bluelight"></div>
                             <div className="flex-1 min-w-0">
-                                <p className="text-gray-900 font-medium">{employee.name}</p>
+                                <p className="text-gray-900 font-nunitobold">{employee.name}</p>
                             </div>
                         </div>
                     </li>
