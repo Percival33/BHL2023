@@ -26,14 +26,14 @@ const HeatMap = () => {
     data[point.regal - 1][point.column - 1] += point.qty;
   });
 
-  // find the maximum value in the data
-  const max = Math.max(...data.map((row) => Math.max(...row)));
-
   // generate the heatmap cells
   const cells = data.map((row, rowIndex) =>
     row.map((value, colIndex) => {
-      // calculate the color based on the value
-      const color = `hsl(${120 - (value / max) * 120}, 100%, 50%)`;
+      // calculate the hue component of the color based on the value
+      const hue = Math.round((value / 100) * 10);
+      // calculate the lightness component of the color based on the value
+      const lightness = 75 - Math.round((value / 100) * 50);
+      const color = `hsl(${hue}, 100%, ${lightness}%)`;
       return (
         <div
           key={`${rowIndex}-${colIndex}`}

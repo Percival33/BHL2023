@@ -14,7 +14,7 @@ module.exports = {
         bluenormal: '#426BFB',
         bluelight: '#426BFB4D',
         bluesuperlight: '#719DFA1A',
-        rednormal: '#F5F5F5',
+        rednormal: '#E24545',
       }
     },
   },

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProblemModal from './ProblemModal';
 import ProblemSolved from './ProblemSolved';
 import ProblemNotSolved from './ProblemNotSolved';

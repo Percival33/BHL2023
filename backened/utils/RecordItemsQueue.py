@@ -1,6 +1,6 @@
 from models import Order, OrderItem
 
-ASSIGN_BORDER = 1
+ASSIGN_BORDER = 3
 
 class RecordItemsQueue:
     def __init__(self):
@@ -20,6 +20,7 @@ class RecordItemsQueue:
         assigned = 0
         assigned_items = []
         given = 0
+        keys_top_pop = []
         for product_type_id, qty in self.items_store.items():
             if ASSIGN_BORDER - assigned < qty:
                 given = ASSIGN_BORDER-assigned
@@ -33,6 +34,10 @@ class RecordItemsQueue:
                 })
             )
             self.items_store[product_type_id] -= given
+            if self.items_store[product_type_id] <= 0:
+                keys_top_pop.append(product_type_id)
             self.total_count -= given
             if assigned >= ASSIGN_BORDER: break
+        for k in keys_top_pop:
+            self.items_store.pop(k)
         return assigned_items
