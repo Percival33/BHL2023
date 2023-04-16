@@ -1,4 +1,4 @@
-import {View, StyleSheet} from "react-native";
+import {View, StyleSheet, Text} from "react-native";
 import {useSelector} from "react-redux";
 
 import Hint from "../components/Hint";
@@ -13,13 +13,18 @@ export default function Home({route, navigation}) {
     if(!currentTask)
         return (
             <View style={styles.container}>
-                <View style={styles.hintContainer}>
-                    <Hint text={'Aktualnie nie masz żadnych zadań'} style={styles.hint}/>
+                <View style={{}}>
+                    <Hint text={'Czekaj na nowe zadania'} style={styles.hint}/>
+                </View>
+                <View style={{alignItems: 'center', marginTop: '50%'}}>
+                    <Text style={styles.textStyle}>Brak nowych zleceń</Text>
                 </View>
             </View>
         );
 
-    const dateStarted = new Date(currentTask.date_started);
+    const dateStarted = new Date(currentTask.record.date_started);
+    const hours = dateStarted.getHours().toString();
+    const minutes = dateStarted.getMinutes().toString();
 
     return (
         <View style={styles.container}>
@@ -28,9 +33,12 @@ export default function Home({route, navigation}) {
             </View>
             <View style={styles.taskContainer}>
                 <NewTask
-                    taskId={currentTask.id}
+                    taskId={currentTask.record_id}
                     title={'Skompletuj zlecenie'}
-                    receivedAt={[dateStarted.getHours(), dateStarted.getMinutes()]}
+                    receivedAt={[
+                        (hours.length===1)? `0${hours}` : hours,
+                        (minutes.length===1)? `0${minutes}` : minutes,
+                    ]}
                 />
             </View>
             <View style={styles.buttonsContainer}>
@@ -38,11 +46,7 @@ export default function Home({route, navigation}) {
                     color={colors.primaryBlue}
                     isPrimary={true}
                     text={'Rozpocznij'}
-                    onPress={() => {
-                        navigation.push('Task', {
-                            'task': currentTask,
-                        })
-                    }
+                    onPress={() => navigation.push('Task', {'task': currentTask})
                 }/>
             </View>
         </View>
@@ -69,5 +73,9 @@ const styles = StyleSheet.create({
         flex: 2,
         gap: 8,
         justifyContent: 'center',
+    },
+    textStyle: {
+        fontFamily: 'Nunito-Bold',
+        fontSize: 26,
     }
 });

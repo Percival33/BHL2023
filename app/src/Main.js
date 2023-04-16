@@ -6,12 +6,21 @@ import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {View, StyleSheet} from "react-native";
 import colors from "./styles/colors";
 import WebSocketProvider from "./websocket";
+import {useSelector} from "react-redux";
+import EnterId from "./components/EnterId";
 
 
 const Stack = createNativeStackNavigator();
 
 export default function Main() {
     const insets = useSafeAreaInsets();
+    const userId = useSelector(state => state.root.userId);
+
+    if(!userId) {
+        return (
+            <EnterId />
+        );
+    }
 
     return (
         <View
@@ -19,7 +28,7 @@ export default function Main() {
                 styles.container,
                 {marginTop: insets.top, marginBottom: insets.bottom, marginLeft: insets.left, marginRight: insets.right}]
         }>
-            <WebSocketProvider>
+            <WebSocketProvider userId={userId}>
                 <Stack.Navigator initialRouteName={'Home'} screenOptions={{headerShown: false}}>
                     <Stack.Screen name='Home' component={Home} />
                     <Stack.Screen name='Task' component={Task} />

@@ -92,8 +92,8 @@ def test_scanned_product(w):
 
 
 if __name__ == "__main__":
-    with connect("ws://localhost:8000/user/dashboard/1") as websocket1:
-        with connect("ws://localhost:8000/user/dashboard/2") as websocket2:
+    with connect("ws://localhost:8000/dashboard/1") as websocket1:
+        with connect("ws://localhost:8000/dashboard/2") as websocket2:
             with connect("ws://localhost:8000/user/1") as websocket3:
                 communicate(websocket1, websocket2, websocket3)
 
@@ -102,8 +102,7 @@ if __name__ == "__main__":
     #             communicate(websocket1, websocket2, websocket2)
     #
 
-    # with connect("ws://localhost:8000/user/adam-nowak") as w:
-    #     test_scanned_product(w)
+    # s
 
 # asyncio.get_event_loop().run_until_complete(test_finished_task())
 # asyncio.get_event_loop().run_until_complete(communicate())

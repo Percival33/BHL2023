@@ -1,8 +1,5 @@
-from bson import ObjectId
-
 from connectors.ABCConnector import DatabaseConnector
 from models import ItemType
-from bson.objectid import ObjectId
 
 
 class ItemConnector(DatabaseConnector):
