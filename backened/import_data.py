@@ -1,11 +1,10 @@
 import sys
 
-import pymongo
 import json
 from pymongo import MongoClient, InsertOne
 from config import settings
 
-client = pymongo.MongoClient(settings.DB_URL)
+client = MongoClient(settings.DB_URL)
 db = client[sys.argv[1]]
 
 collections = [
