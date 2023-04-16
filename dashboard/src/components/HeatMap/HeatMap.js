@@ -1,57 +1,50 @@
-import React from 'react'
-
-import {
-    Chart as ChartJS,
-    BarElement,
-    CategoryScale,
-    LinearScale, // y
-    Tooltip,
-    Legend
-} from 'chart.js';
-
-import { Bar } from 'react-chartjs-2';
-
-ChartJS.register(
-    BarElement,
-    CategoryScale,
-    LinearScale, // y
-    Tooltip,
-    Legend
-)
+import React, { useState, useEffect } from "react";
 
 const HeatMap = () => {
-    const data = {
-        labels: ['Mon', 'Tue', 'Wed'],
-        datasets: [
-            {
-                label: '369',
-                data: [3, 6, 9],
-                backgroundColor: 'acqua',
-                borderColor: 'black',
-                borderWidth: 1,
-            },
-            {
-                label: '342',
-                data: [3, 4, 2],
-                backgroundColor: 'green',
-                borderColor: 'black',
-                borderWidth: 1,
-            }
-        ]
-    }
+    // dummy data
+    const data = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+    ];
 
-    const options = {
+    const [map, setMap] = useState([])
 
-    }
+    useEffect(() => {
+        const fetchMap = async () => {
+            const data = await (await fetch('http://localhost:8000/dashboard/heatmap')).json()
+            console.log(data)
+            setMap(data)
+        }
+        fetchMap()
+    }, [])
+
+    map.forEach((point)=>{
+        data[point.regal-1][point.column-1] +=point.qty
+    })
+
+
+    // generate the heatmap cells
+    const cells = data.map((row, rowIndex) =>
+        row.map((value, colIndex) => (
+            <div
+                key={`${rowIndex}-${colIndex}`}
+                className={`py-3 px-6 text-center ${value > 10 ? "bg-red-500" : "bg-green-500"
+                    }`}
+            >
+                {value}
+            </div>
+        ))
+    );
 
     return (
-        <div className='w-3/4 h-3/4'>
-            <Bar
-                data={data}
-                options={options}
-            ></Bar>
+        <div className="h-full w-full flex justify-center items-center">
+            <div className="grid grid-cols-3 grid-rows-6 gap-2">{cells}</div>
         </div>
-    )
-}
+    );
+};
 
-export default HeatMap
+export default HeatMap;

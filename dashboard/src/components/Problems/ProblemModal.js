@@ -10,16 +10,16 @@ export default function ProblemModal({ setShowModal, problem }) {
                         {/*header*/}
                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                             <h3 className="text-3xl font-nunito overflow-ellipsis max-w-xs">
-                                {problem.worker_id}
+                                {problem.comment}
                             </h3>
                         </div>
                         {/*body*/}
                         <div className="relative p-6 flex-auto">
                             <p className='text-gray-500 my-4'>
-                                {problem.content}
+                                {new Date(problem.date * 1000).toLocaleDateString()}
                             </p>
                             <p className='text-gray-500 my-4'>
-                                {problem.comment}
+                                {problem.worker_id}
                             </p>
                         </div>
                         {/*footer*/}
