@@ -62,6 +62,7 @@ class RecordState(str, Enum):
 
 
 class Record(BaseModel):
+    _id: str
     products: list[RecordItem]
     worker_id: str
     date_started: str
@@ -94,10 +95,13 @@ class RecordResponse(BaseModel):
 class TaskType(str, Enum):
     NEW_TASK = "new_task"
 
+class RecordIdentity(BaseModel):
+    record_id: str
+    record: Record
 
 class Task(BaseModel):  # message for frontend
     type: TaskType = TaskType.NEW_TASK
-    content: Record
+    content: RecordIdentity
 
 
 class AnnouncementType(str, Enum):  # message to worker
