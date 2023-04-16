@@ -4,7 +4,7 @@ import json
 from connectors.ABCConnector import DatabaseConnector
 from routers.order_router import router as order_router
 from routers.user_router import router as user_router
-
+from fastapi import FastAPI
 from config import settings
 import uvicorn
 
