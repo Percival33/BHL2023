@@ -29,7 +29,7 @@ export default function Home({route, navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.hintContainer}>
-                <Hint text={'Twoje następne zadanie'} style={styles.hint}/>
+                <Hint text={'➡️ Twoje następne zadanie'} style={styles.hint}/>
             </View>
             <View style={styles.taskContainer}>
                 <NewTask
