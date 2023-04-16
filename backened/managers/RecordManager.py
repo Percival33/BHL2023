@@ -1,5 +1,6 @@
 from connectors.ABCConnector import DatabaseConnector
 from connectors.ProductConnector import ProductConnector
+from connectors.RecordConnector import RecordConnector
 from connectors.UserConnector import UserConnector
 from managers.PathManager import PathManager
 from models import Order, Record, RecordItem
@@ -9,13 +10,14 @@ from utils.RecordItemsQueue import RecordItemsQueue
 
 
 class RecordManager:
-    def __init__(self, user_connector: UserConnector, product_connector: ProductConnector, path_manager: PathManager, item_connector, qr_connector):
+    def __init__(self, user_connector: UserConnector, product_connector: ProductConnector, path_manager: PathManager, item_connector, qr_connector, record_connector: RecordConnector):
         self.user_connector = user_connector
         self.product_connector = product_connector
         self.path_manager = path_manager
         self.records_queue = RecordItemsQueue()
         self.item_connector = item_connector
         self.qr_connector = qr_connector
+        self.record_connector = record_connector
 
     def reserve_products(self, order_items):
         taken = []
@@ -73,6 +75,7 @@ class RecordManager:
                 "distance": -1
             })
             record.products = self.path_manager.get_optimal_route(record.products)
-            records.append(record)
+            _id = self.record_connector.insert_record(record)
+            records.append((record, _id.inserted_id))
         return records
 
