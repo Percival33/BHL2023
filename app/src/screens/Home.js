@@ -44,7 +44,6 @@ export default function Home({route, navigation}) {
                         })
                     }
                 }/>
-                <Button color={colors.primaryBlue} isPrimary={false} text={'Zobacz szczegóły'}/>
             </View>
         </View>
     );

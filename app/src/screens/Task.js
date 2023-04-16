@@ -66,7 +66,7 @@ export default function Task({route, navigation}) {
             item_id: json.i,
             product_id: json.p,
         }));
-        alert("Produkt zeskanowano poprawnie");
+        Alert.alert('Potwierdzenie', 'Produkt zeskanowano poprawnie')
     }
 
     const buttonText = reachedLocation? 'Skanuj produkty' : 'Jestem na miejscu';
