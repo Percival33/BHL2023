@@ -13,10 +13,10 @@ const ProblemNotSolved = ({ problem, handleProblemSolve, handleProblemCheck }) =
             </div>
             <div className="flex flex-col space-y-2 flex-1 duration-150 cursor-pointer active:scale-95" onClick={() => handleProblemCheck(problem)}>
                 <div className="flex items-center justify-between">
-                    <p className="text-gray-900 font-nunitobold">{problem.author}</p>
+                    <p className="text-gray-900 font-nunitobold">{problem.worker_id}</p>
                     <p className="text-gray-500 text-sm">{problem.date}</p>
                 </div>
-                <p className="text-gray-800">{problem.content}</p>
+                <p className="text-gray-800">{problem.comment}</p>
             </div>
         </li>
     )

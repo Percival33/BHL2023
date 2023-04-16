@@ -6,55 +6,62 @@ import ProblemNotSolved from './ProblemNotSolved';
 const ProblemList = () => {
   const [problems, setProblems] = useState([
     {
-      id: 1,
-      author: 'John Doe',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      item_id: '1',
+      worker_id: 'John Doe',
+      comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       date: '2022-04-18',
+      state: 'reported',
       solved: false
     },
     {
-      id: 2,
-      author: 'Jane Smith',
-      content: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
+      item_id: '2',
+      worker_id: 'Jane Smith',
+      comment: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
       date: '2022-04-17',
+      state: 'reported',
       solved: false
     },
     {
-      id: 3,
-      author: 'Bob Johnson',
-      content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+      item_id: '3',
+      worker_id: 'Bob Johnson',
+      comment: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
       date: '2022-04-16',
+      state: 'reported',
       solved: false
     },
     {
-      id: 4,
-      author: 'John Doe',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      item_id: '4',
+      worker_id: 'John Doe',
+      comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       date: '2022-04-18',
+      state: 'reported',
       solved: false
     },
     {
-      id: 5,
-      author: 'Jane Smith',
-      content: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
+      item_id: '5',
+      worker_id: 'Jane Smith',
+      comment: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
       date: '2022-04-17',
+      state: 'reported',
       solved: false
     },
     {
-      id: 6,
-      author: 'Bob Johnson',
-      content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+      item_id: '6',
+      worker_id: 'Bob Johnson',
+      comment: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
       date: '2022-04-16',
+      state: 'reported',
       solved: false
     },
   ])
   const [showModal, setShowModal] = useState(false)
   const [problem, setProblem] = useState({
-    id: null,
-    author: null,
-    content: null,
+    item_id: null,
+    worker_id: null,
+    comment: null,
     date: null,
-    solved: false
+    state: null,
+    solved: null
   },)
 
   const handleProblemCheck = (problem) => {
@@ -68,8 +75,8 @@ const ProblemList = () => {
 
     setProblems(prevProblems => {
       return prevProblems.map(p => {
-        if (p.id === problem.id) {
-          return { ...p, solved: !problem.solved };
+        if (p.item_id === problem.item_id) {
+          return { ...p, state: !problem.state };
         } else {
           return p;
         }
@@ -83,7 +90,7 @@ const ProblemList = () => {
       <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
         {problems.map((problem) => (
           <>
-            {problem.solved ? <ProblemSolved problem={problem} handleProblemSolve={handleProblemSolve} handleProblemCheck={handleProblemCheck} />
+            {problem.state ? <ProblemSolved problem={problem} handleProblemSolve={handleProblemSolve} handleProblemCheck={handleProblemCheck} />
               : <ProblemNotSolved problem={problem} handleProblemSolve={handleProblemSolve} handleProblemCheck={handleProblemCheck} />}
           </>
         ))}
