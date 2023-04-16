@@ -15,7 +15,6 @@ const App = () => {
     }
 
     fetchUsers()
-    //fetchProblems()
   }, [])
 
   return (

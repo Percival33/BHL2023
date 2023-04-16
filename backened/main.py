@@ -1,5 +1,6 @@
 import json
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from connectors.ABCConnector import DatabaseConnector
 from routers.defect_router import router as defect_router
@@ -15,6 +16,10 @@ app = FastAPI()
 app.include_router(order_router, prefix="/order", tags=['order'])
 app.include_router(defect_router, prefix="/defect", tags=['defect'])
 app.include_router(user_router, prefix="/user", tags=['user'])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*']
+)
 
 if __name__ == "__main__":
     uvicorn.run(
