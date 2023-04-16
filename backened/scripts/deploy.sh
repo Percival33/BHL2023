@@ -21,7 +21,7 @@ echo $DESTINATION_FOLDER
 scp -P "${SSH_PORT}" "${SOURCE_FILE}" "${DESTINATION_FOLDER}"
 
 
-ssh ${SSH_SERVER} "cd ~/BHL2023 && git pull && git checkout backened"
+ssh ${SSH_SERVER} "cd ~/BHL2023 && git pull"
 
 ssh ${SSH_SERVER} "cd ~/BHL2023/backened; docker compose up --build -d"
 

@@ -1,6 +1,7 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from beans import record_connector
+from beans import record_connector, dashboard_manager
+from models import DefectType
 
 router = APIRouter()
 
@@ -23,3 +24,19 @@ def get_heatmap_data():
             "qty": qty
         } for ((regal, column), qty) in heatmap.items()
     ]
+
+
+@router.websocket("/{dashboard_id}")
+async def register_dashboard(websocket: WebSocket, dashboard_id):
+    await dashboard_manager.connect(websocket, dashboard_id)
+    try:
+        while True:
+            res = await websocket.receive()
+            print(res)
+            if res["type"] == DefectType.RESOLVED:
+                raise NotImplementedError("implement after frontend dashboard changes")
+                # defect = defect_connector.get_one(res["_id"])
+                # defect_connector.resolve_defect(defect)
+
+    except WebSocketDisconnect:
+        print("Connection closed")
