@@ -1,4 +1,4 @@
-import {View, StyleSheet} from "react-native";
+import {View, StyleSheet, Text} from "react-native";
 import {useSelector} from "react-redux";
 
 import Hint from "../components/Hint";
@@ -13,8 +13,11 @@ export default function Home({route, navigation}) {
     if(!currentTask)
         return (
             <View style={styles.container}>
-                <View style={styles.hintContainer}>
-                    <Hint text={'Aktualnie nie masz żadnych zadań'} style={styles.hint}/>
+                <View style={{}}>
+                    <Hint text={'Czekaj na nowe zadania'} style={styles.hint}/>
+                </View>
+                <View style={{alignItems: 'center', marginTop: '50%'}}>
+                    <Text style={styles.textStyle}>Brak nowych zleceń</Text>
                 </View>
             </View>
         );
@@ -69,5 +72,9 @@ const styles = StyleSheet.create({
         flex: 2,
         gap: 8,
         justifyContent: 'center',
+    },
+    textStyle: {
+        fontFamily: 'Nunito-Bold',
+        fontSize: 26,
     }
 });
