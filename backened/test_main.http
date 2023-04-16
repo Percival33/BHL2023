@@ -24,7 +24,7 @@ Content-Type: application/json
       },
       {
         "product_type_id": "643b225e76cdab22716407ae",
-        "qty": 1
+        "qty": 20
       }
     ],
     "date_ordered": "2008-09-15T15:53:00+05:00"
