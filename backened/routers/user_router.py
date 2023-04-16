@@ -11,6 +11,7 @@ async def socket_test(websocket: WebSocket, username: str):
     try:
         while True:
             response = await websocket.receive_json()
+            print(response)
             # if response["type"] == RecordItemType.finished_task:
             #     finish_record(response["content"])
             # elif response["type"] == RecordItemType.defect:
