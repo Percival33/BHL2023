@@ -10,7 +10,8 @@ from utils.RecordItemsQueue import RecordItemsQueue
 
 
 class RecordManager:
-    def __init__(self, user_connector: UserConnector, product_connector: ProductConnector, path_manager: PathManager, item_connector, qr_connector, record_connector: RecordConnector):
+    def __init__(self, user_connector: UserConnector, product_connector: ProductConnector, path_manager: PathManager,
+                 item_connector, qr_connector, record_connector: RecordConnector):
         self.user_connector = user_connector
         self.product_connector = product_connector
         self.path_manager = path_manager
@@ -27,8 +28,10 @@ class RecordManager:
             for product in products:
                 count = product['count']
                 possible_to_take = count - product['count_reserved']
-                if possible_to_take > to_take: reserved_qty = to_take
-                else: reserved_qty = possible_to_take
+                if possible_to_take > to_take:
+                    reserved_qty = to_take
+                else:
+                    reserved_qty = possible_to_take
                 self.product_connector.reserve_product(product['nid'], reserved_qty)
                 to_take -= reserved_qty
                 product['name'] = self.product_connector.get_available_products_by_name(product['product_type_id'])
@@ -48,15 +51,18 @@ class RecordManager:
                     break
         return taken
 
-    #TODO make it in transaction
+    # TODO make it in transaction
     def handle_order(self, order: Order):
         self.records_queue.inject_order(order)
+
         def is_free_user():
             return self.user_connector.get_free_user_count() > 0
+
         records = []
         while self.records_queue.is_enough_to_assign() and is_free_user():
             batch = self.records_queue.get_batch()
             taken = self.reserve_products(batch)
+            print("CHECK USER")
             user = self.user_connector.get_free_users()[0]
             self.user_connector.change_user_state(user, True)
             record = Record(**{

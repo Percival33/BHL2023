@@ -37,6 +37,7 @@ async def user_endpoint(websocket: WebSocket, user_id: str):
         user_connector.change_user_state(user, True)
         print("Connection closed")
 
+
 @router.get("/orphant/{user_id}")
 def get_orphant_record(user_id: str):
     orphant = record_connector.get_orphant_record(user_id)

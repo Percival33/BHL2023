@@ -4,6 +4,7 @@ from beans import record_connector
 
 router = APIRouter()
 
+
 @router.get("/heatmap")
 def get_heatmap_data():
     records = list(record_connector.get_all_records())
