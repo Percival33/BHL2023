@@ -7,17 +7,17 @@ import HeatMap from './components/HeatMap/HeatMap';
 
 const App = () => {
   const [users, setUsers] = useState([])
-  const [orders, setOrders] = useState([])
 
   useEffect(() => {
     const fetchUsers = async () => {
       const data = await (await fetch('http://localhost:8000/user')).json()
       setUsers(data)
     }
+
     fetchUsers()
+    //fetchProblems()
   }, [])
 
-  console.log(orders)
   return (
     <>
       <Header />

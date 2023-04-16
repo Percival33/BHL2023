@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProblemModal from './ProblemModal';
 import ProblemSolved from './ProblemSolved';
 import ProblemNotSolved from './ProblemNotSolved';
@@ -54,6 +54,21 @@ const ProblemList = () => {
       solved: false
     },
   ])
+
+  useEffect(() => {
+    const fetchProblems = async () => {
+      const data = await (await fetch('http://localhost:8000/user/...TODO')).json()
+      setProblems(data)
+    }
+    fetchProblems()
+  }, [])
+
+  let socket = new WebSocket("ws://localhost:8000/...TODO");
+
+  socket.onmessage = function(event) {
+    console.log("test")
+  };
+
   const [showModal, setShowModal] = useState(false)
   const [problem, setProblem] = useState({
     item_id: null,
