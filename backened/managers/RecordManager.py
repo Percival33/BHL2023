@@ -12,16 +12,12 @@ class RecordManager:
 
     def reserve_products(self, order_items):
         taken = []
-        print(order_items)
         for item in order_items:
-            print(item)
             products = self.product_connector.get_available_products_by_type(item['product_type_id'])
             to_take = item['qty']
             for product in products:
-                print(product)
                 count = product['count']
                 possible_to_take = count - product['count_reserved']
-                print(possible_to_take)
                 if possible_to_take > to_take: reserved_qty = to_take
                 else: reserved_qty = possible_to_take
                 self.product_connector.reserve_product(product['_id'], reserved_qty)
