@@ -14,7 +14,6 @@ router = APIRouter()
 async def collect_order(order: Order):
     order = jsonable_encoder(order)
     record = records_manager.handle_order(order)
-    print(record.json())
     json_task = json.dumps(Task(**{
             "type": "new_task",
           "content": record
