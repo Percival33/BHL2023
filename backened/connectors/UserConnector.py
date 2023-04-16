@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from connectors.ABCConnector import DatabaseConnector
 
 
@@ -7,7 +9,10 @@ class UserConnector(DatabaseConnector):
         self.users_table = self.db['user']
 
     def get_free_users(self):
-        return list(self.users_table.find({'is_free': True}))
+        return list(self.users_table.find({'assigned': False}))
 
     def change_user_state(self, user, state):
-        self.users_table.update_one({"_id": user['_id']}, {"$set": {"state": state}})
+        self.users_table.update_one({"_id": ObjectId(user['_id']), "user_id": "1"}, {"$set": {"state": state}})
+
+    def get_user_by_username(self, user_id):
+        return self.users_table.find_one({"user_id": user_id})

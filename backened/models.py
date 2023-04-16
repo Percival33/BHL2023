@@ -1,3 +1,4 @@
+
 from enum import Enum
 from pydantic import BaseModel
 
@@ -65,7 +66,7 @@ class Record(BaseModel):
     products: list[RecordItem]
     worker_id: str
     date_started: str
-    date_finished: str
+    date_finished: str = None
     state: RecordState = RecordState.CREATED
     distance: int
 
@@ -78,6 +79,7 @@ class RecordItemResponseType(str, Enum):  # returned from frontend
 class RecordItemResponse(BaseModel):
     type: RecordItemResponseType
     item_id: str
+    product_id: str
 
 
 class RecordResponseType(str, Enum):
@@ -127,3 +129,4 @@ class Defect(BaseModel):
     date: str
     worker_id: str
     state: DefectType = DefectType.REPORTED
+

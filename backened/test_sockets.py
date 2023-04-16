@@ -1,7 +1,9 @@
 import asyncio
+
 import json
 
 import websockets
+import ssl
 
 
 async def test_finished_task():
@@ -21,7 +23,7 @@ async def test_finished_task():
 async def test_defect():
     async with websockets.connect("ws://localhost:8000/user/adam-nowak") as websocket:
         await websocket.send(json.dumps({
-            "type": "defect",
+            "type": "taken_product",
             "content": {
                 "items": [
                     "643ab0ff4b42ff95f745ba2a",
