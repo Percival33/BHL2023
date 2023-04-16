@@ -19,7 +19,7 @@ class ItemConnector(DatabaseConnector):
 
     #
     def collect_item(self, item_id):
-        self.items_table.update_one({"_id": ObjectId(item_id)}, {"$set": {'state': ItemType.COLLECTED}}, upsert=False)
+        self.items_table.update_one({"nid": item_id}, {"$set": {'state': ItemType.COLLECTED}}, upsert=False)
 
     def get(self, item_id):
-        return self.items_table.find_one({"_id": ObjectId(item_id), "state": ItemType.ON_SHELF})
+        return self.items_table.find_one({"nid": item_id, "state": ItemType.ON_SHELF})

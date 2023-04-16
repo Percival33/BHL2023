@@ -43,9 +43,6 @@ def get_all_users():
     return user_connector.get_all_users()
 
 
-
-
-
 def handle_defect(response, user_id):
     defect = Defect(
         item_id=response["item_id"],
@@ -60,6 +57,7 @@ def handle_defect(response, user_id):
 def handle_task_finished(response, user_id):
     record_connector.change_record_state(response['record_id'], RecordState.COMPLETED)
     user = user_connector.get_user_by_username(user_id)
+    user_connector.append_record(user_id, response['record_id'])
     user_connector.change_user_state(user, False)
 
 

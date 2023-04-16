@@ -16,8 +16,8 @@ async def collect_order(order: Order):
     records = records_manager.handle_order(order)
     for record, id in records:
         json_task = Task(**{
-                "type": "new_task",
-              "content": RecordIdentity(record_id=str(id), record=record)
-            }).json()
+            "type": "new_task",
+            "content": RecordIdentity(record_id=str(id), record=record)
+        }).json()
         await user_manager.send_to_user(record.worker_id, json_task)
     return "done!"

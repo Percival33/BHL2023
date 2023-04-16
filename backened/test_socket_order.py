@@ -20,5 +20,5 @@ async def test_finishing_task():
 
 
 
-asyncio.get_event_loop().run_until_complete(test_receving_instruction())
+asyncio.get_event_loop().run_until_complete(test_finishing_task())
 asyncio.get_event_loop().run_forever()
