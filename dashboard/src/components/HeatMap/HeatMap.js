@@ -3,19 +3,17 @@ import React, { useState, useEffect } from "react";
 const HeatMap = () => {
     // dummy data
     const data = [
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
     ];
 
     const [map, setMap] = useState([])
 
     useEffect(() => {
         const fetchMap = async () => {
-            const data = await (await fetch('http://localhost:8000/dashboard/heatmap')).json()
+            const data = await (await fetch(`http://localhost:8000/dashboard/heatmap`)).json()
             console.log(data)
             setMap(data)
         }
@@ -42,7 +40,7 @@ const HeatMap = () => {
 
     return (
         <div className="h-full w-full flex justify-center items-center">
-            <div className="grid grid-cols-3 grid-rows-6 gap-2">{cells}</div>
+            <div className="grid grid-cols-2 grid-rows-4 gap-2">{cells}</div>
         </div>
     );
 };

@@ -5,7 +5,6 @@ import ProblemNotSolved from './ProblemNotSolved';
 
 const ProblemList = () => {
   const [problems, setProblems] = useState([])
-  const wsHandler = useRef(null);
 
   useEffect(() => {
     const fetchProblems = async () => {
@@ -15,16 +14,6 @@ const ProblemList = () => {
     }
     fetchProblems()
   }, [])
-
-  if(wsHandler.current === null){
-    wsHandler.current = new WebSocket("ws://localhost:8000/user/dashboard/1")
-
-    wsHandler.onmessage = function(event) {
-      console.log(event, 'test')
-    };
-  }
-
-  //let socket = new WebSocket("ws://localhost:8000/...TODO");
 
 
   const [showModal, setShowModal] = useState(false)
