@@ -22,7 +22,7 @@ Do tego celu wykorzystujemy zewnętrzne biblioteki: `scipy`, `numpy` aby efektyw
 
 Sam magazyn przechowujemy jako graf gdzie wierzchołkiem jest kolumna w regale magazynowym. Dodatkowo zadbaliśmy o zmniejszenie liczby krawędzi by uniezależnić się od pojedynczego przypadku topologii.
 
-> model magazynu
+![smagazyn](images/magazyn.png)
 
 ### Równomiernego rozłożenia pracy
 
