@@ -16,6 +16,14 @@ Content-Type: application/json
       {
         "product_type_id": "643b21db76cdab22716407ad",
         "qty": 1
+      },
+      {
+        "product_type_id": "643b226476cdab22716407af",
+        "qty": 1
+      },
+      {
+        "product_type_id": "643b225e76cdab22716407ae",
+        "qty": 1
       }
     ],
     "date_ordered": "2008-09-15T15:53:00+05:00"
