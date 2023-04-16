@@ -24,3 +24,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8000/dashboard/heatmap
+
+###
+GET http://localhost:8000/user/orphant/7
+
