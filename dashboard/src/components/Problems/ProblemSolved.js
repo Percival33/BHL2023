@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProblemSolved = ({ problem, handleProblemSolve, handleProblemCheck }) => {
 
-    const date = new Date(problem.date * 1000);
+    const date = new Date(problem.date);
 
     return (
         <div>
