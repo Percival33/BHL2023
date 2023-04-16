@@ -14,7 +14,7 @@ user_connector = UserConnector(settings.DB_URL)
 item_connector = ItemConnector(settings.DB_URL)
 product_connector = ProductConnector(settings.DB_URL)
 defect_connector = DefectConnector(settings.DB_URL)
-
+dashboard_manager = DashboardManager()
 user_manager = UserManager()
 path_manager = PathManager()
 records_manager = RecordManager(user_connector, product_connector, path_manager)
