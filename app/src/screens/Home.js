@@ -14,10 +14,10 @@ export default function Home({route, navigation}) {
         return (
             <View style={styles.container}>
                 <View style={{}}>
-                    <Hint text={'Czekaj na nowe zadania'} style={styles.hint}/>
+                    <Hint text={'Czekaj na nowe zadania 👋'} style={styles.hint}/>
                 </View>
                 <View style={{alignItems: 'center', marginTop: '50%'}}>
-                    <Text style={styles.textStyle}>Brak nowych zleceń</Text>
+                    <Text style={styles.textStyle}>Brak nowych zleceń ✅</Text>
                 </View>
             </View>
         );
@@ -29,7 +29,7 @@ export default function Home({route, navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.hintContainer}>
-                <Hint text={'Twoje następne zadanie'} style={styles.hint}/>
+                <Hint text={'➡️ Twoje następne zadanie'} style={styles.hint}/>
             </View>
             <View style={styles.taskContainer}>
                 <NewTask
