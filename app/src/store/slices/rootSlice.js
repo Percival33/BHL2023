@@ -19,6 +19,6 @@ const rootSlice = createSlice({
 })
 
 export const {
-
+    setCurrentTask, finishCurrentTask
 } = rootSlice.actions
 export default rootSlice.reducer

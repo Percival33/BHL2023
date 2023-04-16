@@ -1,19 +1,14 @@
-import {View, StyleSheet, Text} from "react-native";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {View, StyleSheet} from "react-native";
+import {useSelector} from "react-redux";
 
 import Hint from "../components/Hint";
 import Button from "../components/Button";
 import colors from "../styles/colors";
 import NewTask from "../components/NewTask";
-import task from "../data"
-import {useState, useEffect, useRef, useContext} from "react";
-import {WebSocketContext} from "../websocket";
 
 
 export default function Home({route, navigation}) {
-    const [currentTask, setCurrentTask] = useState(task);
-    const wsHandler = useContext(WebSocketContext);
-
+    const currentTask = useSelector(state => state.root.currentTask);
 
     if(!currentTask)
         return (
@@ -24,6 +19,8 @@ export default function Home({route, navigation}) {
             </View>
         );
 
+    const dateStarted = new Date(currentTask.date_started);
+
     return (
         <View style={styles.container}>
             <View style={styles.hintContainer}>
@@ -33,7 +30,7 @@ export default function Home({route, navigation}) {
                 <NewTask
                     taskId={currentTask.id}
                     title={'Skompletuj zlecenie'}
-                    receivedAt={[12, 46]}
+                    receivedAt={[dateStarted.getHours(), dateStarted.getMinutes()]}
                 />
             </View>
             <View style={styles.buttonsContainer}>
