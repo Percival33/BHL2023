@@ -1,5 +1,6 @@
 from connectors.ItemConnector import ItemConnector
 from connectors.ProductConnector import ProductConnector
+from connectors.RecordConnector import RecordConnector
 from connectors.UserConnector import UserConnector
 from connectors.DefectConnector import DefectConnector
 from connectors.QrConnector import QrConnector
@@ -13,10 +14,11 @@ from managers.DashboardManager import DashboardManager
 
 user_connector = UserConnector(settings.DB_URL)
 item_connector = ItemConnector(settings.DB_URL)
+record_connector = RecordConnector(settings.DB_URL)
 qr_connector = QrConnector(settings.DB_URL)
 product_connector = ProductConnector(settings.DB_URL)
 defect_connector = DefectConnector(settings.DB_URL)
 dashboard_manager = DashboardManager()
 user_manager = UserManager()
 path_manager = PathManager()
-records_manager = RecordManager(user_connector, product_connector, path_manager, item_connector, qr_connector)
+records_manager = RecordManager(user_connector, product_connector, path_manager, item_connector, qr_connector, record_connector)
