@@ -2,17 +2,78 @@ import React, { useState } from 'react';
 import EmployeeModal from './EmployeeModal';
 
 const employees = [
-    { id: 1, name: 'John Smith'},
-    { id: 2, name: 'Jane Doe'},
-    { id: 3, name: 'Bob Johnson' },
-    { id: 4, name: 'Lisa Brown' },
-    { id: 5, name: 'Tom Wilson' },
-    { id: 6, name: 'John Smith'},
-    { id: 7, name: 'Jane Doe'},
-    { id: 8, name: 'Bob Johnson' },
-    { id: 9, name: 'Lisa Brown' },
-    { id: 10, name: 'Tom Wilson' },
-];
+    {
+      user_id: 1,
+      name: 'John',
+      last_name: 'Smith',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 2,
+      name: 'Emma',
+      last_name: 'Johnson',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 3,
+      name: 'James',
+      last_name: 'Williams',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 4,
+      name: 'Olivia',
+      last_name: 'Brown',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 5,
+      name: 'William',
+      last_name: 'Jones',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 6,
+      name: 'Ava',
+      last_name: 'Garcia',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 7,
+      name: 'Henry',
+      last_name: 'Miller',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 8,
+      name: 'Sophia',
+      last_name: 'Davis',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 9,
+      name: 'Daniel',
+      last_name: 'Rodriguez',
+      assigned: false,
+      records: []
+    },
+    {
+      user_id: 10,
+      name: 'Isabella',
+      last_name: 'Martinez',
+      assigned: false,
+      records: [1, 2, 3]
+    }
+  ];
+  
 
 const EmployeeList = () => {
     const [showModal, setShowModal] = useState(false)
@@ -33,7 +94,7 @@ const EmployeeList = () => {
                         <div className="flex items-center space-x-4">
                             <div className="flex-shrink-0 h-10 w-10 rounded-full bg-bluelight"></div>
                             <div className="flex-1 min-w-0">
-                                <p className="text-gray-900 font-nunitobold">{employee.name}</p>
+                                <p className="text-gray-900 font-nunitobold">{employee.name} {employee.last_name}</p>
                             </div>
                         </div>
                     </li>

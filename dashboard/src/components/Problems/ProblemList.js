@@ -79,7 +79,7 @@ const ProblemList = () => {
 
   return (
     <div className="h-full flex flex-col p-4">
-      <h2 className="text-lg font-nunitobold mb-4 text-center">Problemy</h2>
+      <h2 className="text-lg font-nunitobold mb-4 text-center">Usterki</h2>
       <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
         {problems.map((problem) => (
           <>

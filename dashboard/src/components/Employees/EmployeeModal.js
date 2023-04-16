@@ -1,4 +1,4 @@
-//import { LocationMarkerIcon, PhoneIcon, MailIcon, TrendingDownIcon } from '@heroicons/react/solid';
+import { StarIcon } from '@heroicons/react/solid';
 
 export default function EmployeeModal({ setShowModal, employee }) {
 
@@ -20,22 +20,12 @@ export default function EmployeeModal({ setShowModal, employee }) {
                                 opis
                             </p>
                             <ul className="my-4">
-                                <li className="flex items-center">
-                                    {/* <PhoneIcon className="w-5 h-5 mr-1 fill-green-500" /> */}
-                                    <span className="mr-2">aaa</span>
-                                </li>
-                                <li className="flex items-center">
-                                    {/* <MailIcon className="w-5 h-5 mr-1 fill-yellow-500" /> */}
-                                    <span className="mr-2">aaa</span>
-                                </li>
-                                <li className="flex items-center">
-                                    {/* <LocationMarkerIcon className="w-5 h-5 mr-1 fill-red-500" /> */}
-                                    <span className="mr-2">aaa</span>
-                                </li>
-                                <li className="flex items-center">
-                                    {/* <TrendingDownIcon className="w-5 h-5 mr-1 fill-blue-500" /> */}
-                                    <span className="mr-2">aaa</span>
-                                </li>
+                                {employee.records.map((record) => (
+                                    <li className="flex items-center">
+                                        <StarIcon className="w-5 h-5 mr-1 fill-bluenormal" />
+                                        <span className="mr-2">{record}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                         {/*footer*/}
