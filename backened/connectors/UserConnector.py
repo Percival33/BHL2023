@@ -16,3 +16,10 @@ class UserConnector(DatabaseConnector):
 
     def get_user_by_username(self, user_id):
         return self.users_table.find_one({"user_id": user_id})
+
+    def get_all_users(self):
+        docs = list(self.users_table.find({}))
+        for doc in docs:
+            doc["_id"] = str(doc["_id"])
+
+        return docs
