@@ -15,7 +15,10 @@ import {WebSocketContext} from "../websocket";
 export default function Task({route, navigation}) {
     const dispatch = useDispatch();
     const wsHandler = useContext(WebSocketContext);
-    const { task } = route.params;
+    const { record } = route.params;
+
+    const task = record.record;
+    const recordId = record.recordId;
 
     const [currentProduct, setCurrentProduct] = useState(0);
     const [reachedLocation, setReachedLocation] = useState(false);
@@ -32,6 +35,10 @@ export default function Task({route, navigation}) {
             setIsNowScanning(false);
             setUsedIds([]);
             if(currentProduct === task.products.length - 1) {
+                wsHandler.send(JSON.stringify({
+                    "type": "finished_task",
+                    "record_id": recordId
+                }));
                 dispatch(finishCurrentTask())
                 navigation.navigate('Home');
             } else {

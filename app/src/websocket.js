@@ -6,14 +6,16 @@ import {setCurrentTask} from "./store/slices/rootSlice";
 
 export const WebSocketContext = createContext(null);
 
-export default function WebSocketProvider({children}) {
+export default function WebSocketProvider({userId, children}) {
     const dispatch = useDispatch();
     const ws = useRef(null);
 
     if(!ws.current) {
-        ws.current = new WebSocket('ws://192.168.148.9:8000/user/1')
+        console.log("trying to connect, userId: " + userId)
+
+        ws.current = new WebSocket('ws://192.168.148.9:8000/user/' + userId)
         ws.current.onopen = () => {
-            console.log('WS connection opened');
+            console.log('WS connection opened, user: ' + userId);
         };
         ws.current.onerror = (e) => {
             console.log("err " + e.message);

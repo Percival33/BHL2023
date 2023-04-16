@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState= {
-    currentTask : null
+    currentTask : null,
+    userId: null,
 };
 
 const rootSlice = createSlice({
@@ -14,11 +15,16 @@ const rootSlice = createSlice({
         },
         finishCurrentTask(state) {
             state.currentTask = null;
+        },
+        setUserId(state, action) {
+            state.userId = action.payload;
         }
     },
 })
 
 export const {
-    setCurrentTask, finishCurrentTask
+    setCurrentTask,
+    finishCurrentTask,
+    setUserId,
 } = rootSlice.actions
 export default rootSlice.reducer
