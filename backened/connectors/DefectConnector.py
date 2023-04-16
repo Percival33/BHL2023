@@ -8,5 +8,4 @@ class DefectConnector(DatabaseConnector):
         self.defects_table = self.db['defect']
 
     def report_defect(self, defect: Defect):
-        print(f"add defect: {defect}")
         self.defects_table.insert_one(self, defect)
