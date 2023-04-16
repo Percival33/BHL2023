@@ -11,6 +11,9 @@ class UserConnector(DatabaseConnector):
     def get_free_users(self):
         return list(self.users_table.find({'assigned': False}))
 
+    def get_free_user_count(self):
+        return self.users_table.count_documents({'assigned': False})
+
     #TODO change to realy changing user
     def change_user_state(self, user, state):
         print(self.users_table.find_one({"_id": ObjectId(user['_id'])}))
