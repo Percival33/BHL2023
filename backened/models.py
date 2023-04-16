@@ -1,4 +1,3 @@
-
 from enum import Enum
 from pydantic import BaseModel
 
@@ -130,3 +129,9 @@ class Defect(BaseModel):
     worker_id: str
     state: DefectType = DefectType.REPORTED
 
+
+class Qr(BaseModel):
+    product_id: str
+    item_id: str
+    name: str
+    date: str
