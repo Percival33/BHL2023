@@ -23,12 +23,16 @@ class ProductConnector(DatabaseConnector):
                 "$inc": {'count_reserved': reserved_count}}
         })
 
+    def get(self, product_id):
+        return self.product_table.find_one({"_id": ObjectId(product_id)})
+
     def decrement_count(self, product_id, qty=1):
         self.product_table.update_one(
             {
-                "_id": product_id
+                "_id": ObjectId(product_id)
             },
             {
-                "$dec": {'count': qty, 'count_reserved': qty},
+                "$inc": {"count": -qty, "count_reserved": -qty},
             }
         )
+        return self.get(product_id)
