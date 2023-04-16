@@ -16,4 +16,4 @@ class QrConnector(DatabaseConnector):
         data["date"] = date
         new_doc = Qr(**data)
         print("newdoc", new_doc)
-        self.qr_table.insert_one(new_doc)
+        self.qr_table.insert_one(new_doc.dict())

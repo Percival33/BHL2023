@@ -11,9 +11,9 @@ class ItemConnector(DatabaseConnector):
         self.items_table = self.db['item']
 
     def get_available_items(self, product_id: str, qty: int):
+        print(product_id, qty)
         items = self.items_table.find({
-            "product_id": str(product_id),
-            "state": ItemType.ON_SHELF
+            "product_id": product_id,
         }).limit(qty)
         return list(items)
 
