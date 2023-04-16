@@ -64,15 +64,16 @@ class PathManager:
 
     def _to_flat(self, record_items: list[RecordItem]):
         coordinates = {}
-        for i, item in record_items:
-            coor = (item['regal'], item['column'])
+        for item in record_items:
+            coor = (item.regal, item.column)
             l = coordinates.get(coor, [])
             l.append(item)
             coordinates[coor] = l
         return [magazine[x][y] for x, y in coordinates.keys()], coordinates
 
     def get_optimal_route(self, record_items: list[RecordItem]):
-        coors, agreg = list(zip(*self._to_flat(record_items)))
+        print(self._to_flat(record_items))
+        coors, agreg = self._to_flat(record_items)
         best_route = []
         dist = float("inf")
         for possibility in permutations(coors):

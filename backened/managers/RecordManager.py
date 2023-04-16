@@ -48,6 +48,6 @@ class RecordManager:
             ],
             "distance": -1
         })
-        record['products'] = self.path_manager.get_optimal_route(record['products'])
+        record.products = self.path_manager.get_optimal_route(record.products)
         return record
 
