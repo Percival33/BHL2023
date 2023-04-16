@@ -78,4 +78,3 @@ class RecordManager:
             _id = self.record_connector.insert_record(record)
             records.append((record, _id.inserted_id))
         return records
-

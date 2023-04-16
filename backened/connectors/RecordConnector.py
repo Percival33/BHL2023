@@ -21,3 +21,9 @@ class RecordConnector(DatabaseConnector):
 
     def get_all_records(self):
         return self.record_table.find({})
+
+    def get_orphant_record(self, user_id):
+        return self.record_table.find_one({
+            "worker_id": user_id,
+            "$or": [{"state": RecordState.CREATED}, {"state": RecordState.PROCESSED}]
+        })
