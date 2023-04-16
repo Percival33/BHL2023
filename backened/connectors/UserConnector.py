@@ -16,7 +16,7 @@ class UserConnector(DatabaseConnector):
 
     #TODO change to realy changing user
     def change_user_state(self, user, state):
-        print(self.users_table.find_one({"_id": ObjectId(user['_id'])}))
+        # print(self.users_table.find_one({"_id": ObjectId(user['_id'])}))
         self.users_table.update_one({"_id": ObjectId(user['_id']), "user_id": "1"}, {"$set": {"state": state}}, upsert=False)
 
     def get_user_by_username(self, user_id):

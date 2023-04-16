@@ -51,6 +51,7 @@ class RecordItem(BaseModel):  # instruction for frontend
     regal: int
     column: int
     shelf: int
+    name: str = ""
     state: RecordItemType = RecordItemType.READY
 
 

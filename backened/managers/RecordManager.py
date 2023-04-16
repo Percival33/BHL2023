@@ -29,11 +29,12 @@ class RecordManager:
                 else: reserved_qty = possible_to_take
                 self.product_connector.reserve_product(product['_id'], reserved_qty)
                 to_take -= reserved_qty
+                product['name'] = self.product_connector.get_available_products_by_name(product['product_type_id'])
                 taken.append((product, reserved_qty))
                 items = self.item_connector.get_available_items(str(product["_id"]), reserved_qty)
-                print("len2", len(items), items)
+                # print("len2", len(items), items)
                 for item_product in items:
-                    print("it", item_product)
+                    # print("it", item_product)
                     name = self.product_connector.get_available_products_by_name(product['product_type_id'])
                     self.qr_connector.insert_qr_data({
                         "product_id": str(product["_id"]),
@@ -63,6 +64,7 @@ class RecordManager:
                     RecordItem(**{
                         'product_id': str(product['_id']),
                         'qty': qty,
+                        'name': product['name'],
                         'regal': product['regal'],
                         'column': product['column'],
                         'shelf': product['shelf']
