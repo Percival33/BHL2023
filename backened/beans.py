@@ -12,12 +12,12 @@ from managers.RecordManager import RecordManager
 from managers.UserManagers import UserManager
 from managers.DashboardManager import DashboardManager
 
-user_connector = UserConnector(settings.DB_URL)
-item_connector = ItemConnector(settings.DB_URL)
-record_connector = RecordConnector(settings.DB_URL)
-qr_connector = QrConnector(settings.DB_URL)
-product_connector = ProductConnector(settings.DB_URL)
-defect_connector = DefectConnector(settings.DB_URL)
+user_connector = UserConnector(settings.DB_URL, settings.DB_NAME)
+item_connector = ItemConnector(settings.DB_URL, settings.DB_NAME)
+record_connector = RecordConnector(settings.DB_URL, settings.DB_NAME)
+qr_connector = QrConnector(settings.DB_URL, settings.DB_NAME)
+product_connector = ProductConnector(settings.DB_URL, settings.DB_NAME)
+defect_connector = DefectConnector(settings.DB_URL, settings.DB_NAME)
 
 dashboard_manager = DashboardManager()
 user_manager = UserManager()

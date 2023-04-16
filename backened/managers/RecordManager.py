@@ -29,18 +29,18 @@ class RecordManager:
                 possible_to_take = count - product['count_reserved']
                 if possible_to_take > to_take: reserved_qty = to_take
                 else: reserved_qty = possible_to_take
-                self.product_connector.reserve_product(product['_id'], reserved_qty)
+                self.product_connector.reserve_product(product['nid'], reserved_qty)
                 to_take -= reserved_qty
                 product['name'] = self.product_connector.get_available_products_by_name(product['product_type_id'])
                 taken.append((product, reserved_qty))
-                items = self.item_connector.get_available_items(str(product["_id"]), reserved_qty)
+                items = self.item_connector.get_available_items(str(product["nid"]), reserved_qty)
                 # print("len2", len(items), items)
                 for item_product in items:
                     # print("it", item_product)
                     name = self.product_connector.get_available_products_by_name(product['product_type_id'])
                     self.qr_connector.insert_qr_data({
-                        "product_id": str(product["_id"]),
-                        "item_id": str(item_product["_id"]),
+                        "product_id": str(product["nid"]),
+                        "item_id": str(item_product["nid"]),
                         "name": name
                     })
 
@@ -64,7 +64,7 @@ class RecordManager:
                 "date_started": datetime.datetime.now().isoformat(),
                 "products": [
                     RecordItem(**{
-                        'product_id': str(product['_id']),
+                        'product_id': str(product['nid']),
                         'qty': qty,
                         'name': product['name'],
                         'regal': product['regal'],
@@ -78,4 +78,3 @@ class RecordManager:
             _id = self.record_connector.insert_record(record)
             records.append((record, _id.inserted_id))
         return records
-
