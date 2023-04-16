@@ -6,31 +6,38 @@ import Hint from "../components/Hint";
 import Button from "../components/Button";
 import colors from "../styles/colors";
 import NextStep from "../components/NextStep";
-import task from "../data";
 import DefectModal from "../components/DefectModal";
 
 
 
 export default function Task({route, navigation}) {
+    const { task } = route.params;
+
     const [currentProduct, setCurrentProduct] = useState(0);
     const [reachedLocation, setReachedLocation] = useState(false);
     const [isNowScanning, setIsNowScanning] = useState(null);
     const [usedIds, setUsedIds] = useState([]);
     const [defectModalVisible, setDefectModalVisible] = useState(false);
 
-    if(currentProduct >= task.products.length) {
-        navigation.navigate('Home');
-        return;
-    }
+    const itemsLeft =  (currentProduct < task.products.length)?
+        task.products[currentProduct].qty - usedIds.length : 0;
 
-    const itemsLeft = task.products[currentProduct].qty - usedIds.length;
-
-    if(itemsLeft === 0 && usedIds.length !== 0) {
-        setCurrentProduct(currentProduct + 1);
-        setReachedLocation(false);
-        setIsNowScanning(false);
-        setUsedIds([]);
-    }
+    useEffect(() => {
+        if(itemsLeft === 0 && usedIds.length !== 0) {
+            setReachedLocation(false);
+            setIsNowScanning(false);
+            setUsedIds([]);
+            if(currentProduct === task.products.length - 1) {
+                // wsHandler.send(JSON.stringify({'content': 'Task finished'}));
+                navigation.navigate('Home', {
+                    finishedTaskId: task.id
+                });
+            } else {
+                // wsHandler.send(JSON.stringify({'content': 'Product packed'}));
+                setCurrentProduct(currentProduct + 1);
+            }
+        }
+    }, [usedIds])
 
     const handleReachedLocation = () => {
         setReachedLocation(true);

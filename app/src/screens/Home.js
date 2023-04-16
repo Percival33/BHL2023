@@ -6,21 +6,32 @@ import Button from "../components/Button";
 import colors from "../styles/colors";
 import NewTask from "../components/NewTask";
 import task from "../data"
+import {useState, useEffect, useRef, useContext} from "react";
+import {WebSocketContext} from "../websocket";
 
 
-export default function Home({navigation}) {
-    const myTasks = [task];
+export default function Home({route, navigation}) {
+    const [currentTask, setCurrentTask] = useState(task);
+    const wsHandler = useContext(WebSocketContext);
+
+
+    if(!currentTask)
+        return (
+            <View style={styles.container}>
+                <View style={styles.hintContainer}>
+                    <Hint text={'Aktualnie nie masz żadnych zadań'} style={styles.hint}/>
+                </View>
+            </View>
+        );
 
     return (
-        <View style={[
-            styles.container,
-        ]}>
+        <View style={styles.container}>
             <View style={styles.hintContainer}>
                 <Hint text={'Twoje następne zadanie'} style={styles.hint}/>
             </View>
             <View style={styles.taskContainer}>
                 <NewTask
-                    taskId={myTasks[0].id}
+                    taskId={currentTask.id}
                     title={'Skompletuj zlecenie'}
                     receivedAt={[12, 46]}
                 />
@@ -30,9 +41,11 @@ export default function Home({navigation}) {
                     color={colors.primaryBlue}
                     isPrimary={true}
                     text={'Rozpocznij'}
-                    onPress={() => navigation.push('Task', {
-                        'text': 'hello world',
-                    })
+                    onPress={() => {
+                        navigation.push('Task', {
+                            'task': currentTask,
+                        })
+                    }
                 }/>
                 <Button color={colors.primaryBlue} isPrimary={false} text={'Zobacz szczegóły'}/>
             </View>

@@ -5,10 +5,10 @@ import Task from "./screens/Task";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {View, StyleSheet} from "react-native";
 import colors from "./styles/colors";
+import WebSocketProvider from "./websocket";
 
 
 const Stack = createNativeStackNavigator();
-
 
 export default function Main() {
     const insets = useSafeAreaInsets();
@@ -19,10 +19,12 @@ export default function Main() {
                 styles.container,
                 {marginTop: insets.top, marginBottom: insets.bottom, marginLeft: insets.left, marginRight: insets.right}]
         }>
-            <Stack.Navigator initialRouteName={'Home'} screenOptions={{headerShown: false}}>
-                <Stack.Screen name='Home' component={Home} />
-                <Stack.Screen name='Task' component={Task} />
-            </Stack.Navigator>
+            <WebSocketProvider>
+                <Stack.Navigator initialRouteName={'Home'} screenOptions={{headerShown: false}}>
+                    <Stack.Screen name='Home' component={Home} />
+                    <Stack.Screen name='Task' component={Task} />
+                </Stack.Navigator>
+            </WebSocketProvider>
         </View>
     );
 }
