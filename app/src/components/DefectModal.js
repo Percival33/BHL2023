@@ -1,17 +1,19 @@
-import {View, StyleSheet, Text, Modal, TouchableOpacity, TextInput} from "react-native";
+import {View, StyleSheet, Text, Modal, TouchableOpacity, TextInput, Alert} from "react-native";
 import { AntDesign } from '@expo/vector-icons';
-import {useState} from "react";
+import {useContext, useState} from "react";
 
 import colors from "../styles/colors";
 import {BarCodeScanner} from "expo-barcode-scanner";
 import Hint from "./Hint";
 import Button from "./Button";
+import {WebSocketContext} from "../websocket";
 
 
 export default function DefectModal(props) {
     const [stage, setStage] = useState(0);
     const [defectedItemId, setDefectedItemId] = useState(null);
     const [defectDescription, setDefectDescription] = useState('');
+    const wsHandler = useContext(WebSocketContext);
 
     const handleClose = () => {
         setStage(0);
@@ -36,7 +38,13 @@ export default function DefectModal(props) {
     }
 
     const handleSubmit = () => {
+        wsHandler.send(JSON.stringify({
+            type: "defect",
+            item_id: defectedItemId,
+            content: defectDescription,
+        }));
         handleClose();
+        Alert.alert('Potwierdzenie', 'Prawidłowo zgłoszono usterkę')
     }
 
     return (

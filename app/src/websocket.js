@@ -11,7 +11,7 @@ export default function WebSocketProvider({children}) {
     const ws = useRef(null);
 
     if(!ws.current) {
-        ws.current = new WebSocket('ws://192.168.148.9:8080/user/1')
+        ws.current = new WebSocket('ws://192.168.148.9:8000/user/1')
         ws.current.onopen = () => {
             console.log('WS connection opened');
         };
@@ -19,6 +19,7 @@ export default function WebSocketProvider({children}) {
             console.log("err " + e.message);
         };
         ws.current.onmessage = (msg) => {
+            console.log("Msg received", msg)
             try {
                 const data = JSON.parse(JSON.parse(msg.data));
                 if(data.type === 'new_task') {
