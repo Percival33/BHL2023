@@ -22,7 +22,9 @@ export default function Home({route, navigation}) {
             </View>
         );
 
-    const dateStarted = new Date(currentTask.date_started);
+    const dateStarted = new Date(currentTask.record.date_started);
+    const hours = dateStarted.getHours().toString();
+    const minutes = dateStarted.getMinutes().toString();
 
     return (
         <View style={styles.container}>
@@ -31,9 +33,12 @@ export default function Home({route, navigation}) {
             </View>
             <View style={styles.taskContainer}>
                 <NewTask
-                    taskId={currentTask.id}
+                    taskId={currentTask.record_id}
                     title={'Skompletuj zlecenie'}
-                    receivedAt={[dateStarted.getHours(), dateStarted.getMinutes()]}
+                    receivedAt={[
+                        (hours.length===1)? `0${hours}` : hours,
+                        (minutes.length===1)? `0${minutes}` : minutes,
+                    ]}
                 />
             </View>
             <View style={styles.buttonsContainer}>
@@ -41,11 +46,7 @@ export default function Home({route, navigation}) {
                     color={colors.primaryBlue}
                     isPrimary={true}
                     text={'Rozpocznij'}
-                    onPress={() => {
-                        navigation.push('Task', {
-                            'task': currentTask,
-                        })
-                    }
+                    onPress={() => navigation.push('Task', {'task': currentTask})
                 }/>
             </View>
         </View>

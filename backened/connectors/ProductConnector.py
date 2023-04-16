@@ -34,12 +34,12 @@ class ProductConnector(DatabaseConnector):
         })
 
     def get(self, product_id):
-        return self.product_table.find_one({"nid": ObjectId(product_id)})
+        return self.product_table.find_one({"nid": product_id})
 
     def decrement_count(self, product_id, qty=1):
         self.product_table.update_one(
             {
-                "nid": ObjectId(product_id)
+                "nid": product_id
             },
             {
                 "$inc": {"count": -qty, "count_reserved": -qty},

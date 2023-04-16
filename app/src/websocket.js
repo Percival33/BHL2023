@@ -21,9 +21,10 @@ export default function WebSocketProvider({userId, children}) {
             console.log("err " + e.message);
         };
         ws.current.onmessage = (msg) => {
-            console.log("Msg received", msg)
             try {
                 const data = JSON.parse(JSON.parse(msg.data));
+                console.log("Msg received", data)
+                console.log(data.content.record.products)
                 if(data.type === 'new_task') {
                     dispatch(setCurrentTask(data.content));
                 }
