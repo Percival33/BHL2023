@@ -16,7 +16,7 @@ async def user_endpoint(websocket: WebSocket, user_id: str):
         while True:
             response = await websocket.receive_json()
             if response['type'] == RecordItemResponseType.SCANNED_ITEM:
-                handle_item_collection(response)
+                handle_scanned_item(response)
             elif response['type'] == RecordItemResponseType.DEFECT:
                 msg = handle_defect(response, user_id)
                 await websocket.send_json(json.dumps(str(msg)))
@@ -25,20 +25,22 @@ async def user_endpoint(websocket: WebSocket, user_id: str):
 
 
 def handle_defect(response, user_id):
-    if response["type"] == RecordItemResponseType.DEFECT:
-        defect = Defect(
-            item_id=response["item_id"],
-            comment=response["content"],
-            date=str(datetime.timestamp(datetime.now())),
-            worker_id=user_id
-        )
-        # defect_connector.report_defect(defect)
-        print(defect)
-        return defect
-    elif response["type"] == RecordItemResponseType.SCANNED_ITEM:
-        item_connector.scan_item(item_id=response["item_id"])
+    defect = Defect(
+        item_id=response["item_id"],
+        comment=response["content"],
+        date=str(datetime.timestamp(datetime.now())),
+        worker_id=user_id
+    )
+    # defect_connector.report_defect(defect)
+    print(defect)
+    return defect
+
+
+def handle_scanned_item(response):
+    # TODO: validate product_id
+    handle_item_collection(response)
 
 
 def handle_item_collection(response):
-    item_connector.reserve_item(response['item_id'])
+    item_connector.collect_item(response['item_id'])
     product_connector.decrement_count(response['product_id'])

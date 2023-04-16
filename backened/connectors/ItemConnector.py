@@ -7,8 +7,6 @@ class ItemConnector(DatabaseConnector):
         super().__init__(url, db_name)
         self.items_table = self.db['item']
 
-
-
     # def get_available_items(self, item: OrderItem):
     #     items = self.items_table.find({
     #         "code": ObjectId(item['id']),
