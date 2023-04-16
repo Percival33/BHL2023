@@ -60,7 +60,7 @@ def handle_defect(response, user_id):
     defect = Defect(
         item_id=response["item_id"],
         comment=response["content"],
-        date=str(datetime.timestamp(datetime.now().isoformat())),
+        date=datetime.now().isoformat(),
         worker_id=user_id,
         state=DefectType.REPORTED
     )

@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         marginBottom: 8
     },
     descriptionContainer: {
+        gap: 8
     },
     descriptionText: {
         fontFamily: 'Nunito-Regular',

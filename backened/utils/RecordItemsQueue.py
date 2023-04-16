@@ -1,6 +1,6 @@
 from models import Order, OrderItem
 
-ASSIGN_BORDER = 2
+ASSIGN_BORDER = 1
 
 class RecordItemsQueue:
     def __init__(self):

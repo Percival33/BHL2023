@@ -23,11 +23,16 @@ export default function DefectModal(props) {
     }
 
     const handleBarCodeScanned = ({ data }) => {
-        let json;
+        console.log(data);
+        let json = {
+            p: null,
+            i: null
+        }
         try {
-            json = JSON.parse(data);
+            const dataSplit = data.split(' ');
+            json.p = dataSplit[0];
+            json.i = dataSplit[1];
         } catch(err) {
-            console.log(err);
             return;
         }
 

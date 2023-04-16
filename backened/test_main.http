@@ -15,8 +15,8 @@ Content-Type: application/json
 {
     "order_items": [
       {
-        "product_type_id": "643b21db76cdab22716407ad",
-        "qty": 5
+        "product_type_id": "2fa1dd",
+        "qty": 1
       }
     ],
     "date_ordered": "2008-09-15T15:53:00+05:00"
