@@ -4,9 +4,12 @@ import { StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {useState, useEffect} from "react";
+import {BarCodeScanner} from "expo-barcode-scanner";
+import {Provider} from "react-redux";
 
 import Main from "./src/Main";
-import {BarCodeScanner} from "expo-barcode-scanner";
+import store from "./src/store";
+
 
 
 export default function App() {
@@ -42,10 +45,12 @@ export default function App() {
 
   return (
       <SafeAreaProvider>
-        <StatusBar style="auto" />
-        <NavigationContainer>
-          <Main />
-        </NavigationContainer>
+        <Provider store={store}>
+          <StatusBar style="auto" />
+          <NavigationContainer>
+            <Main />
+          </NavigationContainer>
+        </Provider>
       </SafeAreaProvider>
   );
 }
