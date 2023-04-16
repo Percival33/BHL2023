@@ -116,6 +116,7 @@ export default function Task({route, navigation}) {
                                     <Text>
                                         {record.products[currentProduct].name} #{record.products[currentProduct].product_id}
                                     </Text>
+                                    <Text>Nr półki: {record.products[currentProduct].shelf}</Text>
                                     <Text>Ilość pozostałych sztuk: {itemsLeft}</Text>
                                 </NextStep>
                                 :
