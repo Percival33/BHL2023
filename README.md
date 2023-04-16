@@ -38,6 +38,8 @@ Oprócz aplikacji mobilnej zaimplementowaliśmy dashboard, który umożliwia mon
 
 - Dashboard wykonaliśmy w technologii webowej, z wykorzystaniem biblioteki `React`.
 
+![dashboard](images/dashboard.png)
+
 ### Statystyki
 
 System zbiera dane dotyczące odległości pokonanej przez pracowników podczas wykonywania obowiązków. Ułatwia to zarządzanie zasobami ludzkimi oraz pozwala na optymalizację procesów w magazynie. Ponadto w przypadku zgromadzenia większej liczby danych jest szansa na przewidywanie ile będzie trwać wykonanie danego zlecenia.
@@ -46,7 +48,7 @@ System zbiera dane dotyczące odległości pokonanej przez pracowników podczas 
 
 Heatmapa pokazuje gdzie znajdują się przedmioty, które są najbardziej pożądane w magazynie. Umożliwia to zoptymalizowanie układu magazynu oraz przyśpieszenie procesów realizacji zamówień. Może to się odbywać poprzez zmianę miejsc produktów wchodzących w typowe obsługiwane zamówienie.
 
-> zdjęcie heatmapy
+![heatmapa](images/heatmapa.png)
 
 ## Aplikacja mobilna
 
@@ -57,17 +59,18 @@ Do tych informacji należy
 - instrukcja prowadząca pracownika krok po kroku, minimalizując nie potrzebne informacje, najkrótszą ścieżką po wszystkich punktach z których kompletowane jest zamówienie. W ramach tego pokazujemy: numer regału, kolumny oraz półki gdzie znajduje się dany przedmiot oraz liczbę sztuk danego przedmiotu która wchodzi w skład naszego zamówienia.
 
 ![navigation](images/navigation.png)
+![b](images/b.png)
 ![before-scan](images/before-scan.png)
 
 - Wymiana informacji między pracownikiem a pracodawcą odbywa się w czasie rzeczywistym poprzez wykorzystanie gniazd. To daje nam możliwość zgłaszania występujących usterek w czasie rzeczywistym jak również skanowania kompletowanych produktów aby maksymalnie usprawnić i ujednolicić stan rzeczywisty z stanem systemowym. W tym celu posługujemy się skanerem kodów kreskowych.
-- Nato
-  ![start-screen](images/start-screen.png)
+
+![start-screen](images/start-screen.png)
 
 ### Skanowanie kodów kreskowych
 
 Aplikacja mobilna umożliwia skanowanie kodów kreskowych produktów, co pozwala na sprawdzenie zgodności zamówienia ze stanem magazynowym oraz szybkie zaktualizowanie danych w systemie. Każdy produkt, posiada unikalny kod identyfikujący, który pozwala na weryfikację czy pakowany produkt jest tym właściwym.
 
-## ![scan-code](images/scan-code.png)
+![scan-code](images/scan-code.png)
 
 ## Podsumowanie
 
