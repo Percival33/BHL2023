@@ -96,9 +96,11 @@ class RecordResponse(BaseModel):
 class TaskType(str, Enum):
     NEW_TASK = "new_task"
 
+
 class RecordIdentity(BaseModel):
     record_id: str
     record: Record
+
 
 class Task(BaseModel):  # message for frontend
     type: TaskType = TaskType.NEW_TASK
