@@ -1,4 +1,3 @@
-from bson import ObjectId
 from pymongo import MongoClient
 from abc import ABC
 

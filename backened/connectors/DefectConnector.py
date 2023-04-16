@@ -1,8 +1,5 @@
-import json
-
 from connectors.ABCConnector import DatabaseConnector
 from models import Defect
-from models import DefectType
 
 
 class DefectConnector(DatabaseConnector):

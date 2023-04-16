@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Load variables from .env file
-source .env.prod
+source ../.env.prod
 
 # Check if the SERVER_ADDRESS variable is set
 if [[ -z "${SSH_SERVER}" ]]; then

@@ -1,5 +1,3 @@
-from bson import ObjectId
-from pymongo import ASCENDING
 from connectors.ABCConnector import DatabaseConnector
 
 
