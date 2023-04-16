@@ -5,11 +5,12 @@ from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from beans import (
     user_manager,
     defect_connector,
-record_connector,
+    record_connector,
     item_connector,
     product_connector,
     dashboard_manager,
-    user_connector
+    user_connector,
+    path_manager
 )
 from models import RecordItemResponseType, Defect, DefectType, RecordResponseType, RecordState
 from datetime import datetime
@@ -42,6 +43,9 @@ def get_all_users():
     return user_connector.get_all_users()
 
 
+
+
+
 def handle_defect(response, user_id):
     defect = Defect(
         item_id=response["item_id"],
@@ -51,6 +55,7 @@ def handle_defect(response, user_id):
         state=DefectType.REPORTED
     )
     return defect_connector.report_defect(defect)
+
 
 def handle_task_finished(response, user_id):
     record_connector.change_record_state(response['record_id'], RecordState.COMPLETED)
