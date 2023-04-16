@@ -6,7 +6,7 @@ import ssl
 
 
 async def test_receving_instruction():
-    async with websockets.connect("ws://localhost:8000/user/1") as websocket:
+    async with websockets.connect("ws://localhost:8000/user/100") as websocket:
         while True:
             res = await websocket.recv()
             print(res)
