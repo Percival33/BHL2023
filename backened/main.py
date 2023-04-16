@@ -1,5 +1,6 @@
 import json
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from connectors.ABCConnector import DatabaseConnector
 from routers.defect_router import router as defect_router

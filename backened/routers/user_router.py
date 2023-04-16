@@ -22,6 +22,10 @@ router = APIRouter()
 async def user_endpoint(websocket: WebSocket, user_id: str):
     await user_manager.connect(websocket, user_id)
     user = user_connector.get_user_by_username(user_id)
+    if user is None:
+        user_manager.disconnect(user_id)
+        await websocket.close()
+        return
     try:
         user_connector.change_user_state(user, False)
         while True:
@@ -35,6 +39,7 @@ async def user_endpoint(websocket: WebSocket, user_id: str):
                 handle_task_finished(response, user_id)
     except WebSocketDisconnect:
         user_connector.change_user_state(user, True)
+        user_manager.disconnect(user_id)
         print("Connection closed")
 
 

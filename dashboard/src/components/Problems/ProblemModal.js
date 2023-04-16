@@ -1,6 +1,6 @@
 
 export default function ProblemModal({ setShowModal, problem }) {
-    console.log(problem)
+
     return (
         <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -10,7 +10,7 @@ export default function ProblemModal({ setShowModal, problem }) {
                         {/*header*/}
                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                             <h3 className="text-3xl font-nunito overflow-ellipsis max-w-xs">
-                                {problem.author}
+                                {problem.worker_id}
                             </h3>
                         </div>
                         {/*body*/}
@@ -19,10 +19,7 @@ export default function ProblemModal({ setShowModal, problem }) {
                                 {problem.content}
                             </p>
                             <p className='text-gray-500 my-4'>
-                                {problem.date}
-                            </p>
-                            <p className='text-gray-500 my-4'>
-                                {problem.solved ? 'SOLVED': 'SOLVE'}
+                                {problem.comment}
                             </p>
                         </div>
                         {/*footer*/}
