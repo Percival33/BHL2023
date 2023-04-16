@@ -1,14 +1,16 @@
 from connectors.ABCConnector import DatabaseConnector
 from connectors.ProductConnector import ProductConnector
 from connectors.UserConnector import UserConnector
+from managers.PathManager import PathManager
 from models import Order, Record, RecordItem
 import datetime
 
 
 class RecordManager:
-    def __init__(self, user_connector: UserConnector, product_connector: ProductConnector):
+    def __init__(self, user_connector: UserConnector, product_connector: ProductConnector, path_manager: PathManager):
         self.user_connector = user_connector
         self.product_connector = product_connector
+        self.path_manager = path_manager
 
     def reserve_products(self, order_items):
         taken = []
@@ -32,7 +34,7 @@ class RecordManager:
         taken = self.reserve_products(order['order_items'])
         user = self.user_connector.get_free_users()[0]
         self.user_connector.change_user_state(user, True)
-        return Record(**{
+        record = Record(**{
             "worker_id": user['user_id'],
             "date_started": datetime.datetime.now().isoformat(),
             "products": [
@@ -46,4 +48,6 @@ class RecordManager:
             ],
             "distance": -1
         })
+        record['products'] = self.path_manager.get_optimal_route(record['products'])
+        return record
 
