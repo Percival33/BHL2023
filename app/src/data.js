@@ -1,10 +1,10 @@
 const request = {
-    id: 312,
+    "id": 312,
     "products": [
         {
-            "id": 32112,
+            "id": 32,
             "name": "Buty nike",
-            "qty": 3,
+            "qty": 1,
             "loc": {
                 "regal": 21,
                 "column": 3,
