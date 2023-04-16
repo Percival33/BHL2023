@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import OrderChart from './components/OrderChart/OrderChart';
 import EmployeeList from './components/Employees/EmployeeList';
@@ -6,6 +6,18 @@ import ProblemList from './components/Problems/ProblemList';
 import HeatMap from './components/HeatMap/HeatMap';
 
 const App = () => {
+  const [users, setUsers] = useState([])
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const data = await (await fetch('http://localhost:8000/user')).json()
+      setUsers(data)
+    }
+    fetchUsers()
+  }, [])
+
+  console.log(orders)
   return (
     <>
       <Header />
@@ -15,7 +27,7 @@ const App = () => {
             <OrderChart />
           </div>
           <div className="bg-white mr-2 rounded-xl flex flex-col">
-            <EmployeeList />
+            <EmployeeList employees={users} />
           </div>
           <div className="bg-white ml-2 rounded-xl flex flex-col mb-2">
             <ProblemList />
