@@ -16,7 +16,7 @@ export default function ProblemModal({ setShowModal, problem }) {
                         {/*body*/}
                         <div className="relative p-6 flex-auto">
                             <p className='text-gray-500 my-4'>
-                                {new Date(problem.date * 1000).toLocaleDateString()}
+                                {new Date(problem.date).toLocaleDateString()}
                             </p>
                             <p className='text-gray-500 my-4'>
                                 {problem.worker_id}
