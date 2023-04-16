@@ -19,6 +19,14 @@ class ProductConnector(DatabaseConnector):
             "product_type_id": product_type_id,
         }).sort('count_reserved', -1)
 
+    def get_available_products_by_name(self, product_type_id):
+        doc = self.product_type_table.find_one({
+            "_id": ObjectId(product_type_id),
+        })
+
+        print(doc)
+        return doc["name"]
+
     def reserve_product(self, product_id, reserved_count):
         self.product_table.update_one({
             "_id": product_id

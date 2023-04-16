@@ -3,3 +3,5 @@ uvicorn[standard]
 websockets
 pymongo
 scipy
+dijkstar
+python_tsp

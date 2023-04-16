@@ -9,11 +9,13 @@ from utils.RecordItemsQueue import RecordItemsQueue
 
 
 class RecordManager:
-    def __init__(self, user_connector: UserConnector, product_connector: ProductConnector, path_manager: PathManager):
+    def __init__(self, user_connector: UserConnector, product_connector: ProductConnector, path_manager: PathManager, item_connector, qr_connector):
         self.user_connector = user_connector
         self.product_connector = product_connector
         self.path_manager = path_manager
         self.records_queue = RecordItemsQueue()
+        self.item_connector = item_connector
+        self.qr_connector = qr_connector
 
     def reserve_products(self, order_items):
         taken = []
@@ -28,6 +30,17 @@ class RecordManager:
                 self.product_connector.reserve_product(product['_id'], reserved_qty)
                 to_take -= reserved_qty
                 taken.append((product, reserved_qty))
+                items = self.item_connector.get_available_items(str(product["_id"]), reserved_qty)
+                print("len2", len(items), items)
+                for item_product in items:
+                    print("it", item_product)
+                    name = self.product_connector.get_available_products_by_name(product['product_type_id'])
+                    self.qr_connector.insert_qr_data({
+                        "product_id": str(product["_id"]),
+                        "item_id": str(item_product["_id"]),
+                        "name": name
+                    })
+
                 if to_take <= 0:
                     break
         return taken
