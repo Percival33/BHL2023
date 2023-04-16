@@ -10,4 +10,13 @@ class DefectConnector(DatabaseConnector):
         self.defects_table = self.db['defect']
 
     def report_defect(self, defect: Defect):
-        self.defects_table.insert_one(defect.dict())
+        new_doc = self.defects_table.insert_one(defect.dict())
+        return self.get_one(new_doc.inserted_id)
+
+    def get_one(self, defect_id: str):
+        doc = self.defects_table.find_one({"_id": defect_id})
+        doc["_id"] = str(doc["_id"])
+        return doc
+
+    def resolve_defect(self, defect: Defect):
+        return self.defects_table.update_one(defect)

@@ -46,6 +46,15 @@ def test_defect(w):
         res = w.recv()
 
 
+def resolve_defect(w):
+    while True:
+        w.send(json.dumps({
+            "type": "resolved",
+            "item_id": "643ab0ff4b42ff95f745ba2a",
+        }))
+        res = w.recv()
+
+
 def test_register_dashboard(w):
     while True:
         res = w.recv()
@@ -61,7 +70,7 @@ def test_register_dashboard2(w):
 def communicate(w1, w2, w3):
     t1 = threading.Thread(target=test_register_dashboard2, args=(w1,))
     t2 = threading.Thread(target=test_register_dashboard, args=(w2,))
-    t3 = threading.Thread(target=test_defect, args=(w3,))
+    t3 = threading.Thread(target=resolve_defect, args=(w3,))
     t1.start()
     t2.start()
     t3.start()
@@ -72,10 +81,14 @@ def communicate(w1, w2, w3):
 
 
 if __name__ == "__main__":
+    # with connect("ws://localhost:8000/user/dashboard/1") as websocket1:
+    #     with connect("ws://localhost:8000/user/dashboard/2") as websocket2:
+    #         with connect("ws://localhost:8000/user/adam-nowak") as websocket3:
+    #             communicate(websocket1, websocket2, websocket3)
+
     with connect("ws://localhost:8000/user/dashboard/1") as websocket1:
         with connect("ws://localhost:8000/user/dashboard/2") as websocket2:
-            with connect("ws://localhost:8000/user/adam-nowak") as websocket3:
-                communicate(websocket1, websocket2, websocket3)
+            communicate(websocket1, websocket2, websocket2)
 
 # asyncio.get_event_loop().run_until_complete(test_finished_task())
 # asyncio.get_event_loop().run_until_complete(communicate())

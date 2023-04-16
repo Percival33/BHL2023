@@ -30,8 +30,7 @@ def handle_response(response, user_id):
             worker_id=user_id,
             state=DefectType.REPORTED
         )
-        defect_connector.report_defect(defect)
-        return defect.json()
+        return defect_connector.report_defect(defect)
     elif response["type"] == RecordItemResponseType.SCANNED_ITEM:
         item_connector.scan_item(item_id=response["item_id"])
         return ""
@@ -44,5 +43,11 @@ async def register_dashboard(websocket: WebSocket, dashboard_id):
     try:
         while True:
             res = await websocket.receive()
+            print(res)
+            if res["type"] == DefectType.RESOLVED:
+                raise NotImplementedError("implement after frontend dashboard changes")
+                # defect = defect_connector.get_one(res["_id"])
+                # defect_connector.resolve_defect(defect)
+
     except WebSocketDisconnect:
         print("Connection closed")
