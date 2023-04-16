@@ -16,6 +16,7 @@ item_connector = ItemConnector(settings.DB_URL)
 qr_connector = QrConnector(settings.DB_URL)
 product_connector = ProductConnector(settings.DB_URL)
 defect_connector = DefectConnector(settings.DB_URL)
+
 dashboard_manager = DashboardManager()
 user_manager = UserManager()
 path_manager = PathManager()
