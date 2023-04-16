@@ -1,4 +1,4 @@
-//import { LocationMarkerIcon, PhoneIcon, MailIcon, TrendingDownIcon } from '@heroicons/react/solid';
+import { StarIcon } from '@heroicons/react/solid';
 
 export default function EmployeeModal({ setShowModal, employee }) {
 
@@ -11,7 +11,7 @@ export default function EmployeeModal({ setShowModal, employee }) {
                         {/*header*/}
                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                             <h3 className="text-3xl font-nunitobold overflow-ellipsis max-w-xs">
-                                {employee.name}
+                                {employee.name} {employee.last_name}
                             </h3>
                         </div>
                         {/*body*/}
@@ -20,22 +20,12 @@ export default function EmployeeModal({ setShowModal, employee }) {
                                 opis
                             </p>
                             <ul className="my-4">
-                                <li className="flex items-center">
-                                    {/* <PhoneIcon className="w-5 h-5 mr-1 fill-green-500" /> */}
-                                    <span className="mr-2">aaa</span>
-                                </li>
-                                <li className="flex items-center">
-                                    {/* <MailIcon className="w-5 h-5 mr-1 fill-yellow-500" /> */}
-                                    <span className="mr-2">aaa</span>
-                                </li>
-                                <li className="flex items-center">
-                                    {/* <LocationMarkerIcon className="w-5 h-5 mr-1 fill-red-500" /> */}
-                                    <span className="mr-2">aaa</span>
-                                </li>
-                                <li className="flex items-center">
-                                    {/* <TrendingDownIcon className="w-5 h-5 mr-1 fill-blue-500" /> */}
-                                    <span className="mr-2">aaa</span>
-                                </li>
+                                {employee.records.map((record) => (
+                                    <li className="flex items-center">
+                                        <StarIcon className="w-5 h-5 mr-1 fill-bluenormal" />
+                                        <span className="mr-2">{record}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                         {/*footer*/}
