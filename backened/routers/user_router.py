@@ -2,7 +2,14 @@ import json
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from beans import user_manager, defect_connector, item_connector, product_connector, dashboard_manager
+from beans import (
+    user_manager,
+    defect_connector,
+    item_connector,
+    product_connector,
+    dashboard_manager,
+    user_connector
+)
 from models import RecordItemResponseType, Defect, DefectType
 from datetime import datetime
 
@@ -22,6 +29,11 @@ async def user_endpoint(websocket: WebSocket, user_id: str):
                 await dashboard_manager.broadcast(msg)
     except WebSocketDisconnect:
         print("Connection closed")
+
+
+@router.get("/")
+def get_all_users():
+    return user_connector.get_all_users()
 
 
 def handle_defect(response, user_id):
