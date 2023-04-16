@@ -1,4 +1,3 @@
-from connectors.ABCConnector import DatabaseConnector
 from connectors.ProductConnector import ProductConnector
 from connectors.RecordConnector import RecordConnector
 from connectors.UserConnector import UserConnector

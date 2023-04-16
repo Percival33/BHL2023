@@ -1,5 +1,3 @@
-import json
-
 from fastapi import APIRouter
 from fastapi.encoders import jsonable_encoder
 

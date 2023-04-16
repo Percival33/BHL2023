@@ -15,7 +15,7 @@ Content-Type: application/json
 {
     "order_items": [
       {
-        "product_type_id": "2fa1dd",
+        "product_type_id": "ae6db5",
         "qty": 1
       }
     ],

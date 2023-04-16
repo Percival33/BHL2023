@@ -1,5 +1,3 @@
-from bson import ObjectId
-
 from connectors.ABCConnector import DatabaseConnector
 from datetime import datetime
 

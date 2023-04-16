@@ -10,11 +10,6 @@ class ProductConnector(DatabaseConnector):
         self.product_type_table = self.db['product_type']
 
     def get_available_products_by_type(self, product_type_id):
-        # return self.product_table.find({
-        #     "product_type_id": ObjectId(product_type_id),
-        #     "$expr": {"$lt": ["$count_reserved", "$count"]}
-        # }).sort('count_reserved', -1)
-
         return self.product_table.find({
             "product_type_id": product_type_id,
         }).sort('count_reserved', -1)

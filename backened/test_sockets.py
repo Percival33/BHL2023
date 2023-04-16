@@ -4,7 +4,6 @@ import json
 import threading
 
 import websockets
-import ssl
 from websockets.sync.client import connect
 
 
