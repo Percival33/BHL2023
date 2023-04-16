@@ -90,7 +90,7 @@ async def register_dashboard(websocket: WebSocket, dashboard_id):
     try:
         while True:
             res = await websocket.receive()
-            print(res)
+            print("RES", res)
             if res["type"] == DefectType.RESOLVED:
                 raise NotImplementedError("implement after frontend dashboard changes")
                 # defect = defect_connector.get_one(res["_id"])
