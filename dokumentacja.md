@@ -1,6 +1,6 @@
 # Dokumentacja Projektu - Ale to Ty dzwonisz?!
 
-## Zespół 👋
+## 👋 Zespół 
 
 Nasz zespół:
 - [Mikołaj Szawerda](https://github.com/MikolajSzawerda)
