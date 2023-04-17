@@ -20,9 +20,9 @@ Our team:
 
 ## Project documentation and presentation
 
-The documentation is contained in the file [dokumentacja.md](https://chat.openai.com/documentacja.md). It includes a description of the project and a more detailed explanation of the solutions along with technical details.
+The documentation is contained in the file [dokumentacja.md](documentacja.md). It includes a description of the project and a more detailed explanation of the solutions along with technical details.
 
-The final presentation is in the file [Ale to ty dzwonisz](https://chat.openai.com/Ale%20to%20ty%20dzwonisz%20(1).pdf)
+The final presentation is in the file [Ale to ty dzwonisz](Ale%20to%20ty%20dzwonisz%20(1).pdf)
 
 ## Technologies
 
